@@ -16,9 +16,6 @@
         <module name="lfind" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="lfind" target="11" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
