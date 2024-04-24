@@ -1,11 +1,21 @@
 package cli;
 
+import cli.enums.SearchMode;
+import cli.utils.FileUtils;
+import cli.utils.PrettyPrint;
+import core.searchers.FileContentSearcher;
+import core.searchers.FileMetaSearcher;
+import core.searchers.ISearcher;
+import core.searchers.PipeStreamSearcher;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import picocli.CommandLine;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.Objects;
 import java.util.Scanner;
 
 
@@ -14,16 +24,24 @@ import java.util.Scanner;
 
 @CommandLine.Command(name = "lfind")
 @Slf4j
-public class FileSearch {
-    public FileSearch() {
+public class LFind {
+    @Setter
+    boolean isPipedInput;
 
+    @CommandLine.Spec
+    CommandLine.Model.CommandSpec spec;
+
+    public LFind() {
+        this.isPipedInput = false;
     }
 
     @CommandLine.Option(names = {"-c", "--content"}, description = "Search content of files")
     boolean contentMode;
 
-    File directory;
+    @CommandLine.Option(names = {"-m"}, description = "In memory search")
+    boolean inMemory;
 
+    File directory;
 
     @CommandLine.Option(names = {"-t", "--types"}, description = "File extensions to include (comma-separated, e.g. pdf,xlsx,txt)", defaultValue = "", split = ",")
     String[] types;
@@ -31,14 +49,16 @@ public class FileSearch {
     @CommandLine.Option(names = {"-h", "--help"}, usageHelp = true, description = "Help")
     boolean helpMode;
 
+    @Getter
     @CommandLine.Option(names = {"-v", "--verbose"}, description = "Verbose mode")
     boolean verbose;
+
+    @CommandLine.Option(names = {"-e", "--expression"}, description = "Lucene query expression")
+    boolean luceneQuery;
 
     @CommandLine.Parameters(paramLabel = "QUERY", description = "Query to search")
     String[] queries;
 
-    @CommandLine.Spec
-    CommandLine.Model.CommandSpec spec;
 
     @CommandLine.Option(names = {"-p", "--path"}, description = "The path to begin search from", defaultValue = ".")
     public void setDirectory(String value) {
@@ -65,80 +85,92 @@ public class FileSearch {
         System.out.println();
     }
 
+    private void argsValidityCheck() {
+        // checks if the combination of args are valid
+        // can be replaced by using groups
+        // throws exception if the combination is invalid
+    }
+
+    private boolean hasPipedInput() {
+        try {
+            return System.in.available() > 0;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void run() {
+        argsValidityCheck();
+
         if(verbose) {
             printArgs();
         }
 
-        if(contentMode)
-            contentSearch();
-        else
-            fileMetaSearch();
+        ISearcher searcher = buildSearcher();
+        processQueries(searcher);
+        searcher.close();
     }
 
-    private void contentSearch() {
-        System.out.println("inside content search");
+    private ISearcher buildSearcher() {
+        Path indexDir = FileUtils.createTempDirectory();
+
+        // determine type of input
+        SearchMode searchMode = getSearchMode();
+        ISearcher searcher;
+
+        switch (searchMode) {
+            case FILE_METADATA:
+                // file metadata
+                searcher = new FileMetaSearcher(indexDir, directory);
+                break;
+            case FILE_CONTENT:
+                // file content
+                searcher = new FileContentSearcher(indexDir);
+                break;
+            default:
+                // piped input
+                searcher = new PipeStreamSearcher(indexDir);
+        }
+
+        return searcher;
     }
 
-    int count = 0;
-
-    private void dfs(File file) {
-        file.getAbsolutePath().equals("Provided value '%s' for option 'DIRECTORY' is not a directory");
-
-        count++;
-        if(file.listFiles() != null) {
-            for (File listFile : Objects.requireNonNull(file.listFiles())) {
-                dfs(listFile);
-            }
+    private void processQueries(ISearcher searcher) {
+        // TODO
+        // check for interactive mode
+        for (String query : queries) {
+            final String[] matches = searcher.getMatches(query);
+            PrettyPrint.printMatches(query, matches);
         }
     }
 
-    private void fileMetaSearch() {
-        System.out.println("inside file metadata search");
-
-        dfs(directory);
-        System.out.println("files traversed: " + count);
+    SearchMode getSearchMode() {
+        return hasPipedInput()? SearchMode.PIPED_INPUT: contentMode? SearchMode.FILE_CONTENT: SearchMode.FILE_METADATA;
     }
 
 
     public static void main(String[] args) {
         log.info("STARTED");
-        System.out.println("started");
-        FileSearch fs = new FileSearch();
+        LFind lfind = new LFind();
 
         try {
-            CommandLine cli = new CommandLine(fs);
+            CommandLine cli = new CommandLine(lfind);
             cli.parseArgs(args);
 
-            boolean pipedInput = System.console() == null;
+            lfind.run();
 
-            System.out.println("piped: " + pipedInput);
+        } catch(Exception e) {
+            System.out.println("Failed to run. Exiting.");
 
-            if(pipedInput)
-                handlePipedInput();
-            else if(args.length == 0)
-                startInteractiveMode(fs);
-            else
-                fs.run();
-
-        } catch(CommandLine.ParameterException e) {
-            System.err.println("Error: " + e.getMessage());
-            CommandLine.usage(fs, System.err);
+            if(lfind.isVerbose()) {
+                e.printStackTrace();
+            }
         }
 
         log.info("ENDED");
     }
 
-    private static void handlePipedInput() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (scanner.hasNextLine()) {
-            String query = scanner.nextLine();
-            System.out.println("Received via pipe: " + query); // Placeholder for your processing logic
-        }
-    }
-
-    private static void startInteractiveMode(FileSearch fs) {
+    private static void startInteractiveMode(LFind fs) {
 
         Scanner scanner = new Scanner(System.in);
         CommandLine cmd = new CommandLine(fs);

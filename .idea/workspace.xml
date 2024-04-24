@@ -4,22 +4,27 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/Example.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/converters/FileTypeConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_classic_1_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ch_qos_logback_logback_core_1_2_6.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__info_picocli_picocli_4_7_5.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_lucene_lucene_core_9_10_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_32.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_slf4j_slf4j_api_1_7_36.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="resume impls">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cli/enums/SearchMode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cli/utils/FileUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cli/utils/PrettyPrint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/analyzers/FileNameAnalyzer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/enums/FileType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/filters/ReversedTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/readers/IReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/searchers/FileContentSearcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/searchers/ISearcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/searchers/PipeStreamSearcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/writers/FileContentWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/writers/FileMetaWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/writers/IWriter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/writers/PipeStreamWriter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lfind.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/FileSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/FileSearch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/FileSearch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/LFind.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +34,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -59,9 +65,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2eQjaJpeTLBGQzsQuCSCARoyWJT" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -70,6 +76,8 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.FileSearch.executor": "Debug",
+    "Application.LFind.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "vva",
     "ignore.virus.scanning.warn.message": "true",
@@ -80,6 +88,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -101,7 +110,7 @@
       <recentPaths value="$PROJECT_DIR$" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.FileSearch">
+  <component name="RunManager" selected="Application.LFind">
     <configuration name="Cli" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cli.Cli" />
       <module name="lfind" />
@@ -128,9 +137,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FileSearch" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="cli.FileSearch" />
+    <configuration name="LFind" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="cli.LFind" />
       <module name="lfind" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;rever&quot; &quot;filetype&quot; &quot;stream&quot; &quot;conTent&quot; &quot;avaj&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="cli.*" />
@@ -158,9 +168,16 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/target/lfind-1.0-SNAPSHOT.jar" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Cli" />
+      <item itemvalue="Application.Example" />
+      <item itemvalue="Application.LFind" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JAR Application.lfind-1.0-SNAPSHOT.jar" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FileSearch" />
+        <item itemvalue="Application.LFind" />
         <item itemvalue="Application.Example" />
         <item itemvalue="Application.Cli" />
         <item itemvalue="JAR Application.lfind-1.0-SNAPSHOT.jar" />
@@ -184,7 +201,10 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1711843759257</updated>
-      <workItem from="1713815962439" duration="453000" />
+      <workItem from="1713815962439" duration="5985000" />
+      <workItem from="1713836052012" duration="16496000" />
+      <workItem from="1713894327482" duration="14548000" />
+      <workItem from="1713921329870" duration="12422000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -214,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711909796494</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="resume impls">
+      <option name="closed" value="true" />
+      <created>1713816540302</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1713816540303</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +251,29 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added pom" />
     <MESSAGE value="added FileSearch" />
-    <option name="LAST_COMMIT_MESSAGE" value="added FileSearch" />
+    <MESSAGE value="resume impls" />
+    <option name="LAST_COMMIT_MESSAGE" value="resume impls" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cli/LFind.java</url>
+          <line>141</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java</url>
+          <line>108</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java</url>
+          <line>65</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
