@@ -1,7 +1,6 @@
 package core.filters;
 
 import org.apache.lucene.analysis.TokenFilter;
-import org.apache.lucene.analysis.synonym.SynonymGraphFilter;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 
@@ -19,6 +18,7 @@ public class ReversedTokenFilter extends TokenFilter {
     @Override
     public boolean incrementToken() throws IOException {
         if (emitOriginalToken && input.incrementToken()) {
+            posIncAttribute.setPositionIncrement(1);
             emitOriginalToken = false;
             return true; // Emit original token first
         }

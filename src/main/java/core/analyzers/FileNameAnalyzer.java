@@ -1,6 +1,5 @@
 package core.analyzers;
 
-import core.filters.ReversedTokenFilter;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.LowerCaseFilter;
 import org.apache.lucene.analysis.TokenFilter;
@@ -13,7 +12,7 @@ public class FileNameAnalyzer extends Analyzer {
         WhitespaceTokenizer tokenizer = new WhitespaceTokenizer();
 
         TokenFilter filter = new LowerCaseFilter(tokenizer); // Normalize tokens to lowercase
-        filter = new ReversedTokenFilter(filter); // Apply custom synonym filter
+//        filter = new ReversedTokenFilter(filter); // Apply custom synonym filter
 
         return new TokenStreamComponents(tokenizer, filter);
     }

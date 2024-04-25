@@ -1,15 +1,18 @@
 package cli;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
 import cli.enums.SearchMode;
 import cli.utils.FileUtils;
 import cli.utils.PrettyPrint;
 import core.searchers.FileContentSearcher;
 import core.searchers.FileMetaSearcher;
 import core.searchers.ISearcher;
-import core.searchers.PipeStreamSearcher;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 
 import java.io.File;
@@ -38,13 +41,13 @@ public class LFind {
     @CommandLine.Option(names = {"-c", "--content"}, description = "Search content of files")
     boolean contentMode;
 
-    @CommandLine.Option(names = {"-m"}, description = "In memory search")
-    boolean inMemory;
+//    @CommandLine.Option(names = {"-m"}, description = "In memory search")
+//    boolean inMemory;
 
     File directory;
 
-    @CommandLine.Option(names = {"-t", "--types"}, description = "File extensions to include (comma-separated, e.g. pdf,xlsx,txt)", defaultValue = "", split = ",")
-    String[] types;
+    @CommandLine.Option(names = {"-m", "--mimetypes"}, description = "Mime-Types to include (comma-separated, e.g. pdf,doc,text)", split = ",")
+    String[] mimeTypes;
 
     @CommandLine.Option(names = {"-h", "--help"}, usageHelp = true, description = "Help")
     boolean helpMode;
@@ -62,6 +65,10 @@ public class LFind {
 
     @CommandLine.Option(names = {"-p", "--path"}, description = "The path to begin search from", defaultValue = ".")
     public void setDirectory(String value) {
+        if (value.equals(".")) {
+            value = System.getProperty("user.dir");
+        }
+
         File file = new File(value);
 
         if(!file.exists())
@@ -74,15 +81,15 @@ public class LFind {
     }
 
     private void printArgs() {
-        System.out.println();
-        System.out.println("Running with the following args:");
-        System.out.println("types: " + Arrays.asList(types));
-        System.out.println("path: " + directory.getAbsolutePath());
-        System.out.println("content-mode: " + contentMode);
-        System.out.println("help-mode: " + helpMode);
-        System.out.println("verbose-mode: " + verbose);
-        System.out.println("query: '" + Arrays.asList(queries) + "'");
-        System.out.println();
+        log.info("");
+        log.info("Running with the following args:");
+        log.info("types: " + Arrays.asList(mimeTypes));
+        log.info("path: " + directory.getAbsolutePath());
+        log.info("content-mode: " + contentMode);
+        log.info("help-mode: " + helpMode);
+        log.info("verbose-mode: " + verbose);
+        log.info("query: " + Arrays.asList(queries));
+        log.info("");
     }
 
     private void argsValidityCheck() {
@@ -101,14 +108,19 @@ public class LFind {
 
     public void run() {
         argsValidityCheck();
+        checkVerbosity();
 
-        if(verbose) {
-            printArgs();
-        }
+        // TODO remove this
+        printArgs();
 
         ISearcher searcher = buildSearcher();
         processQueries(searcher);
         searcher.close();
+    }
+
+    private void checkVerbosity() {
+        if(!verbose)
+            turnOffLogging();
     }
 
     private ISearcher buildSearcher() {
@@ -125,11 +137,12 @@ public class LFind {
                 break;
             case FILE_CONTENT:
                 // file content
-                searcher = new FileContentSearcher(indexDir);
+                searcher = new FileContentSearcher(indexDir, directory, mimeTypes);
                 break;
             default:
                 // piped input
-                searcher = new PipeStreamSearcher(indexDir);
+                searcher = null;
+//                searcher = new PipeStreamSearcher(indexDir);
         }
 
         return searcher;
@@ -139,18 +152,33 @@ public class LFind {
         // TODO
         // check for interactive mode
         for (String query : queries) {
-            final String[] matches = searcher.getMatches(query);
+            String[] matches;
+            try {
+                matches = luceneQuery? searcher.getLuceneQueryMatches(query) :  searcher.getMatches(query);
+            } catch (Exception e) {
+                matches = null;
+
+                Arrays.stream(e.getStackTrace()).forEach(st -> log.info(st.toString()));
+            }
+
             PrettyPrint.printMatches(query, matches);
         }
     }
 
-    SearchMode getSearchMode() {
+    private SearchMode getSearchMode() {
         return hasPipedInput()? SearchMode.PIPED_INPUT: contentMode? SearchMode.FILE_CONTENT: SearchMode.FILE_METADATA;
     }
 
+    private static void turnOffLogging() {
+        // Get the logger context
+        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+
+        // Set the root logger level to OFF
+        Logger rootLogger = loggerContext.getLogger(Logger.ROOT_LOGGER_NAME);
+        rootLogger.setLevel(Level.OFF);
+    }
 
     public static void main(String[] args) {
-        log.info("STARTED");
         LFind lfind = new LFind();
 
         try {
@@ -162,9 +190,7 @@ public class LFind {
         } catch(Exception e) {
             System.out.println("Failed to run. Exiting.");
 
-            if(lfind.isVerbose()) {
-                e.printStackTrace();
-            }
+            log.error(e.getMessage());
         }
 
         log.info("ENDED");

@@ -29,7 +29,19 @@
             <version>8.11.3</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.lucene/lucene-queryparser -->
+        <dependency>
+            <groupId>org.apache.lucene</groupId>
+            <artifactId>lucene-queryparser</artifactId>
+            <version>9.10.0</version>
+        </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.pdfbox/pdfbox -->
+        <dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+            <version>3.0.2</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
         <dependency>
@@ -38,6 +50,52 @@
             <version>4.7.5</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.tika/tika-core -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-core</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.tika/tika-parsers -->
+        <dependency>
+            <groupId>org.apache.tika</groupId>
+            <artifactId>tika-parsers</artifactId>
+            <version>2.9.2</version>
+            <type>pom</type>
+        </dependency>
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.poi/poi &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi</artifactId>-->
+<!--            <version>5.2.5</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.5</version>
+        </dependency>
+
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.poi/poi-scratchpad &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi-scratchpad</artifactId>-->
+<!--            <version>5.2.5</version>-->
+<!--        </dependency>-->
+
+
+        <!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi-ooxml-schemas</artifactId>-->
+<!--            <version>4.1.2</version>-->
+<!--        </dependency>-->
+
+
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
@@ -54,6 +112,22 @@
             <version>1.7.36</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.23.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.23.1</version>
+        </dependency>
+
+
 
         <dependency>
             <groupId>ch.qos.logback</groupId>

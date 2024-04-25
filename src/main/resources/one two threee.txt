@@ -1,0 +1,11 @@
+vishal vardhan aDEPU
+Vance Drummond (1927–1967) was a New Zealand–born Australian pilot who fought in the Korean and Vietnam Wars. Posted to No. 77 Squadron in Korea, he flew Gloster Meteor jet fighters and earned the US Air Medal for his combat skills. He was shot down in 1951 and imprisoned for almost two years. He was awarded the Air Force Cross in 1965 after leading the Black Diamonds aerobatic team of No. 75 Squadron. Drummond was promoted to acting wing commander in 1965 and posted to South Vietnam on staff duties with the US Air Force. He joined their 19th Tactical Air Support Squadron, operating Cessna Bird Dog aircraft, as a forward air controller in July 1966. That month he earned the Distinguished Flying Cross for his part in rescuing a company of soldiers surrounded by Viet Cong forces. Returning to Australia, he took command of No. 3 Squadron in February 1967. His Dassault Mirage IIIO crashed into the sea during a training exercise in May; neither Drummond nor the aircraft was found. (Full article...)
+
+Recently featured: Death of Blair PeachStanley Price WeirKathleen Ferrier
+ArchiveBy emailMore featured articlesAbout
+
+based on various parameters.
+•	To improve result explainability, a hybrid approach combines rule-based classification with machine learning. This method not only categorizes binaries as malware or goodware but also classifies them into specific malware families using clustering algorithms.
+•	Simple clustering approaches encounter challenges in balancing coverage and specificity within malware clusters, potentially leading to increased false positives. Overcoming these challenges involves employing biclustering techniques to optimize rule generation across multiple dimensions.
+•	Optimization techniques borrowed from adversarial malware generation, such as genetic algorithms and biclustering, are utilized to enhance the efficiency of rule generation processes.
+•	Antivirus companies adopt diverse strategies, including machine learning and signature-based methods, based on situational requirements. Machine learning offers superior generalization, while signature-based approaches excel in rapid one-day malware 
