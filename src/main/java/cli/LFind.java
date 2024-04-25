@@ -9,6 +9,7 @@ import cli.utils.PrettyPrint;
 import core.searchers.FileContentSearcher;
 import core.searchers.FileMetaSearcher;
 import core.searchers.ISearcher;
+import core.searchers.PipeStreamSearcher;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -141,8 +142,7 @@ public class LFind {
                 break;
             default:
                 // piped input
-                searcher = null;
-//                searcher = new PipeStreamSearcher(indexDir);
+                searcher = new PipeStreamSearcher(indexDir);
         }
 
         return searcher;

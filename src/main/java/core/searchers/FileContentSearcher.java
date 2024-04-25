@@ -1,7 +1,6 @@
 package core.searchers;
 
-import core.analyzers.FileNameAnalyzer;
-import core.enums.FileType;
+import core.analyzers.CustomWhiteSpaceAnalyzer;
 import core.enums.MimeType;
 import lombok.SneakyThrows;
 import org.apache.lucene.analysis.Analyzer;
@@ -46,7 +45,7 @@ public class FileContentSearcher implements ISearcher {
 
     public FileContentSearcher(Path indexDir, File rootDir, String[] mimeTypes) {
         this.rootDir = rootDir;
-        this.analyzer = new FileNameAnalyzer();
+        this.analyzer = new CustomWhiteSpaceAnalyzer();
         this.nTopDocs = 20;
         this.tika = new Tika();
 
@@ -216,6 +215,6 @@ public class FileContentSearcher implements ISearcher {
 
     @Override
     public String formatMatch(Document document) {
-        return String.format("%-4s | %-40s | %s", document.get(Fields.MIME_TYPE), document.get(Fields.FILE_NAME), makePathClickable(document.get(Fields.ABS_PATH)));
+        return String.format("%-3s | %-40s | %s", document.get(Fields.MIME_TYPE), document.get(Fields.FILE_NAME), makePathClickable(document.get(Fields.ABS_PATH)));
     }
 }

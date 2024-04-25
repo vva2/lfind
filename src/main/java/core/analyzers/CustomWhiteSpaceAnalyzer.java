@@ -3,10 +3,9 @@ package core.analyzers;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.LowerCaseFilter;
 import org.apache.lucene.analysis.TokenFilter;
-import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.core.WhitespaceTokenizer;
 
-public class FileNameAnalyzer extends Analyzer {
+public class CustomWhiteSpaceAnalyzer extends Analyzer {
     @Override
     protected TokenStreamComponents createComponents(String fieldName) {
         WhitespaceTokenizer tokenizer = new WhitespaceTokenizer();

@@ -1,6 +1,6 @@
 package core.searchers;
 
-import core.analyzers.FileNameAnalyzer;
+import core.analyzers.CustomWhiteSpaceAnalyzer;
 import core.enums.FileType;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -38,7 +38,7 @@ public class FileMetaSearcher implements ISearcher {
 
     public FileMetaSearcher(Path indexDir, File rootDir) {
         this.rootDir = rootDir;
-        this.analyzer = new FileNameAnalyzer();
+        this.analyzer = new CustomWhiteSpaceAnalyzer();
         this.nTopDocs = 20;
 
         buildIndex(indexDir);
