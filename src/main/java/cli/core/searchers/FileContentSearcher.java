@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -48,7 +49,7 @@ public class FileContentSearcher implements ISearcher {
     public FileContentSearcher(Path indexDir, File rootDir, String[] mimeTypes) {
         this.rootDir = rootDir;
         this.analyzer = new CustomWhiteSpaceAnalyzer();
-        this.nTopDocs = 20;
+        this.nTopDocs = 50;
         this.tika = new Tika();
 
 
@@ -136,9 +137,15 @@ public class FileContentSearcher implements ISearcher {
         // Create a Lucene document for the file
         Document document = new Document();
 
-        mimeType.getParser().readContent(file, text -> {
-            document.add(new TextField(Fields.CONTENT, text + " ", Field.Store.NO));
-        });
+        try {
+            mimeType.getParser().readContent(file, text -> {
+                document.add(new TextField(Fields.CONTENT, text + " ", Field.Store.NO));
+            });
+        } catch (Exception e) {
+            log.severe("ERROR occured while indexing file: " + absolutePath);
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
+            return;
+        }
 
         document.add(new StoredField(Fields.ABS_PATH, absolutePath));
         document.add(new StoredField(Fields.MIME_TYPE, mimeType.name()));
@@ -146,6 +153,7 @@ public class FileContentSearcher implements ISearcher {
 
         // Add the document to the Lucene index
         try {
+            log.info("writing document...");
             writer.addDocument(document);
         } catch (IOException e) {
             throw new RuntimeException(e);

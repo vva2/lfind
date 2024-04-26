@@ -167,15 +167,6 @@ public class LFind {
         return hasPipedInput()? SearchMode.PIPED_INPUT: contentMode? SearchMode.FILE_CONTENT: SearchMode.FILE_METADATA;
     }
 
-    private static void turnOffLogging() {
-        // Get the logger context
-//        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-//
-//        // Set the root logger level to OFF
-//        Logger rootLogger = loggerContext.getLogger(Logger.ROOT_LOGGER_NAME);
-//        rootLogger.setLevel(Level.OFF);
-    }
-
     private static void startInteractiveMode(LFind fs) {
 
         Scanner scanner = new Scanner(System.in);

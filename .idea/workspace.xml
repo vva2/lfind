@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="jar file running with java -cp command.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cli/config/ReflectionRegistration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reflect-config.json" afterDir="false" />
+    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="GraalVM does not fully support lucene dependencies">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/lfind-windows-exec-bin/lfind.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/LFind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/LFind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/config/GlobalLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/config/GlobalLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/config/ReflectionRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reflect-config.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +34,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="main" />
@@ -53,6 +65,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
 }</component>
@@ -69,6 +84,7 @@
     "Application.Main.executor": "Run",
     "Maven.lfind [--version].executor": "Run",
     "Maven.lfind [clean,compile].executor": "Run",
+    "Maven.lfind [clean,package].executor": "Run",
     "Maven.lfind [clean,validate,compile,test...].executor": "Run",
     "Maven.lfind [clean,validate,compile].executor": "Run",
     "Maven.lfind [clean].executor": "Run",
@@ -96,10 +112,10 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings",
+    "settings.editor.selected.configurable": "jvm.logging",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -170,8 +186,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cli.Main" />
       <module name="lfind" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;config&quot;" />
-      <option name="VM_PARAMETERS" value="-agentlib:native-image-agent=config-output-dir=C:\Users\vva\Desktop\lfind\target\classes\META-INF\native-image\picocli-generated\org.lfind\lfind -Dorg.apache.lucene.store.MMapDirectory.enableMemorySegments=false" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;slf4j&quot; -c" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
@@ -235,7 +250,8 @@
       <workItem from="1714113565148" duration="477000" />
       <workItem from="1714114054359" duration="65000" />
       <workItem from="1714114127597" duration="905000" />
-      <workItem from="1714115134990" duration="3708000" />
+      <workItem from="1714115134990" duration="6125000" />
+      <workItem from="1714156050334" duration="6557000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -313,11 +329,30 @@
       <option name="project" value="LOCAL" />
       <updated>1714108708686</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="GraalVM does not fully support lucene dependencies">
+      <option name="closed" value="true" />
+      <created>1714153695866</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1714153695866</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added pom" />
@@ -328,7 +363,8 @@
     <MESSAGE value="refactored code and filenames" />
     <MESSAGE value="refactored all classes. facing issues with graal vm native-image generation." />
     <MESSAGE value="jar file running with java -cp command." />
-    <option name="LAST_COMMIT_MESSAGE" value="jar file running with java -cp command." />
+    <MESSAGE value="GraalVM does not fully support lucene dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="GraalVM does not fully support lucene dependencies" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -340,7 +376,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java</url>
-          <line>36</line>
+          <line>34</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>

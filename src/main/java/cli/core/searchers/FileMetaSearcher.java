@@ -41,7 +41,7 @@ public class FileMetaSearcher implements ISearcher {
     public FileMetaSearcher(Path indexDir, File rootDir) {
         this.rootDir = rootDir;
         this.analyzer = new CustomWhiteSpaceAnalyzer();
-        this.nTopDocs = 20;
+        this.nTopDocs = Integer.MAX_VALUE;
 
         buildIndex(indexDir);
         openSearcher();

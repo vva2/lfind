@@ -18,7 +18,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="lfind" options="-Aproject=org.lfind/lfind" />
+      <module name="lfind" options="-nowarn -Aproject=org.lfind/lfind" />
     </option>
   </component>
 </project>
