@@ -39,6 +39,8 @@ public class FileMetaSearcher implements ISearcher {
     public FileMetaSearcher() {}
 
     public FileMetaSearcher(Path indexDir, File rootDir) {
+        log.info("Initializing file metadata searcher...");
+
         this.rootDir = rootDir;
         this.analyzer = new CustomWhiteSpaceAnalyzer();
         this.nTopDocs = Integer.MAX_VALUE;
@@ -49,16 +51,24 @@ public class FileMetaSearcher implements ISearcher {
 
     @SneakyThrows
     private void openSearcher() {
+        log.info("Opening searcher...");
+
         this.searcher = new IndexSearcher(DirectoryReader.open(this.index));
+
+        log.info("Searcher opened.");
     }
 
     @SneakyThrows
     private void initializeIndexWriter() {
+        log.info("Initializing index...");
+
         IndexWriterConfig config = new IndexWriterConfig(this.analyzer);
         // Create a new index in the directory, removing any
         // previously indexed documents:
         config.setOpenMode(IndexWriterConfig.OpenMode.CREATE);
         this.writer = new IndexWriter(this.index, config);
+
+        log.info("Index initialized");
     }
 
     @SneakyThrows
@@ -82,11 +92,15 @@ public class FileMetaSearcher implements ISearcher {
     private static Predicate<Path> isFileOrDirectory() {
         return path -> {
             try {
+                log.info("checking path: " + path.toAbsolutePath());
+
                 BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
 
                 return attributes.isRegularFile() || attributes.isDirectory();
             } catch (IOException e) {
-                log.severe(Arrays.toString(e.getStackTrace()));
+                log.severe("Error predicating on file: " + path.toAbsolutePath());
+                Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
+
                 // Handle IOException if necessary
                 return false; // Return false in case of an error
             }

@@ -49,7 +49,7 @@ public class FileContentSearcher implements ISearcher {
     public FileContentSearcher(Path indexDir, File rootDir, String[] mimeTypes) {
         this.rootDir = rootDir;
         this.analyzer = new CustomWhiteSpaceAnalyzer();
-        this.nTopDocs = 50;
+        this.nTopDocs = Integer.MAX_VALUE;
         this.tika = new Tika();
 
 

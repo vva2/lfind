@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="built a windows batch file. command line execution working. adjust topdocs for content search. modified text field selectors.">
+    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="added file name logging in logging.properties">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/LFind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/LFind.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/logging.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/logging.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -175,7 +180,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cli.Main" />
       <module name="lfind" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;slf4j&quot; -v" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;go.go&quot; -v -p &quot;C:\Users\vva\Desktop&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
@@ -240,7 +245,7 @@
       <workItem from="1714114054359" duration="65000" />
       <workItem from="1714114127597" duration="905000" />
       <workItem from="1714115134990" duration="6125000" />
-      <workItem from="1714156050334" duration="6995000" />
+      <workItem from="1714156050334" duration="11255000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -350,7 +355,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714163303192</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added file name logging in logging.properties">
+      <option name="closed" value="true" />
+      <created>1714163611308</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1714163611308</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -378,7 +391,8 @@
     <MESSAGE value="jar file running with java -cp command." />
     <MESSAGE value="GraalVM does not fully support lucene dependencies" />
     <MESSAGE value="built a windows batch file. command line execution working. adjust topdocs for content search. modified text field selectors." />
-    <option name="LAST_COMMIT_MESSAGE" value="built a windows batch file. command line execution working. adjust topdocs for content search. modified text field selectors." />
+    <MESSAGE value="added file name logging in logging.properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="added file name logging in logging.properties" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

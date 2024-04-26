@@ -105,6 +105,10 @@ public class LFind {
         }
     }
 
+    private boolean isInteractive() {
+        return queries == null;
+    }
+
     public void run() {
         argsValidityCheck();
         checkVerbosity();
@@ -112,9 +116,17 @@ public class LFind {
         // TODO remove this
         printArgs();
 
-        ISearcher searcher = buildSearcher();
-        processQueries(searcher);
+        Path indexDir = FileUtils.createTempDirectory();
+        ISearcher searcher = buildSearcher(indexDir);
+        log.info("Searcher initialized");
+
+        if(isInteractive())
+            runInteractiveMode(searcher);
+        else
+            processQueries(searcher);
+
         searcher.close();
+        cleanUp(indexDir);
     }
 
     private void checkVerbosity() {
@@ -122,8 +134,8 @@ public class LFind {
             GlobalLogger.turnOffLogging();
     }
 
-    private ISearcher buildSearcher() {
-        Path indexDir = FileUtils.createTempDirectory();
+    private ISearcher buildSearcher(Path indexDir) {
+        log.info("INDEX DIRECTORY: " + indexDir);
 
         // determine type of input
         SearchMode searchMode = getSearchMode();
@@ -147,47 +159,65 @@ public class LFind {
     }
 
     private void processQueries(ISearcher searcher) {
+        log.info("Processing queries...");
         // TODO
         // check for interactive mode
         for (String query : queries) {
-            String[] matches;
-            try {
-                matches = luceneQuery? searcher.getLuceneQueryMatches(query) :  searcher.getMatches(query);
-            } catch (Exception e) {
-                matches = null;
-
-                Arrays.stream(e.getStackTrace()).forEach(st -> log.info(st.toString()));
-            }
-
-            PrettyPrint.printMatches(query, matches);
+            processQuery(searcher, query);
         }
+    }
+
+    private void processQuery(ISearcher searcher, String query) {
+        String[] matches;
+        try {
+            matches = luceneQuery? searcher.getLuceneQueryMatches(query) :  searcher.getMatches(query);
+        } catch (Exception e) {
+            matches = null;
+
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.info(st.toString()));
+        }
+
+        PrettyPrint.printMatches(query, matches);
     }
 
     private SearchMode getSearchMode() {
         return hasPipedInput()? SearchMode.PIPED_INPUT: contentMode? SearchMode.FILE_CONTENT: SearchMode.FILE_METADATA;
     }
 
-    private static void startInteractiveMode(LFind fs) {
+    private void cleanUp(Path indexDir) {
+        log.info("Cleaning up index");
+        try {
+            org.apache.commons.io.FileUtils.deleteDirectory(indexDir.toFile());
+            log.info("index removed successfully");
+        } catch (IOException e) {
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
+            log.severe("failed to delete index");
+        }
+    }
 
+    private void runInteractiveMode(ISearcher searcher) {
         Scanner scanner = new Scanner(System.in);
-        CommandLine cmd = new CommandLine(fs);
 
-        System.out.println("Interactive mode. Enter 'exit' to quit.");
+        System.out.println("Interactive mode. Enter '\\q' to quit.");
 
         while (true) {
             System.out.print("query> ");
             String input = scanner.nextLine().trim();
 
             // Check for exit condition
-            if ("exit".equalsIgnoreCase(input) || "quit".equalsIgnoreCase(input)) {
+            if ("\\q".equalsIgnoreCase(input)) {
+                log.info("Exiting interactive mode");
                 break;
+            } else if("\\h".equalsIgnoreCase(input)) {
+                log.info("Interactive: help mode");
+                System.out.println("Enter a query to search | \\q for quit | \\h for help");
+                continue;
             }
 
             // Parse and execute the command
-            String query = input.trim().toLowerCase();
+            String query = input.trim();
 
-            System.out.println("You entered: " + query);
-
+            processQuery(searcher, query);
         }
     }
 }
