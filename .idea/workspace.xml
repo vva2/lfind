@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="refactored all classes. facing issues with graal vm native-image generation.">
+    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="jar file running with java -cp command.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cli/config/ReflectionRegistration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reflect-config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/Example.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,39 +62,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FileSearch.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.LFind.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,validate,compile,test...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vva&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vva/Desktop/lfind&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.rmicompiler&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FileSearch.executor": "Debug",
+    "Application.LFind.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Maven.lfind [--version].executor": "Run",
+    "Maven.lfind [clean,compile].executor": "Run",
+    "Maven.lfind [clean,validate,compile,test...].executor": "Run",
+    "Maven.lfind [clean,validate,compile].executor": "Run",
+    "Maven.lfind [clean].executor": "Run",
+    "Maven.lfind [compile].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:add-reachability-metadata].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:build].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile-no-fork].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:add-reachability-metadata].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:generateResourceConfig].executor": "Run",
+    "Maven.lfind [org.graalvm.nativeimage:native-image-maven-plugin:21.2.0:native-image].executor": "Run",
+    "Maven.lfind [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "vva",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/vva/Desktop/lfind/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vva\Desktop\lfind\src\main\resources" />
       <recent name="C:\Users\vva\Desktop\lfind" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -107,6 +118,7 @@
       <command value="java -jar lfind-1.0-SNAPSHOT.jar hello" />
       <command value="mvn clean install -U" />
       <command value="mvn clean install" />
+      <command value="mvn --version" />
     </option>
   </component>
   <component name="RunAnythingContextRecentDirectoryCache">
@@ -159,6 +171,7 @@
       <option name="MAIN_CLASS_NAME" value="cli.Main" />
       <module name="lfind" />
       <option name="PROGRAM_PARAMETERS" value="&quot;config&quot;" />
+      <option name="VM_PARAMETERS" value="-agentlib:native-image-agent=config-output-dir=C:\Users\vva\Desktop\lfind\target\classes\META-INF\native-image\picocli-generated\org.lfind\lfind -Dorg.apache.lucene.store.MMapDirectory.enableMemorySegments=false" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
@@ -217,7 +230,12 @@
       <workItem from="1714062674003" duration="14292000" />
       <workItem from="1714089061699" duration="8227000" />
       <workItem from="1714097351425" duration="7461000" />
-      <workItem from="1714106774156" duration="1833000" />
+      <workItem from="1714106774156" duration="5375000" />
+      <workItem from="1714113005962" duration="550000" />
+      <workItem from="1714113565148" duration="477000" />
+      <workItem from="1714114054359" duration="65000" />
+      <workItem from="1714114127597" duration="905000" />
+      <workItem from="1714115134990" duration="3708000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -287,7 +305,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714094798867</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="jar file running with java -cp command.">
+      <option name="closed" value="true" />
+      <created>1714108708686</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714108708686</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +327,8 @@
     <MESSAGE value="added code for content searching. includes pdf, word and text file searching. execution working." />
     <MESSAGE value="refactored code and filenames" />
     <MESSAGE value="refactored all classes. facing issues with graal vm native-image generation." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored all classes. facing issues with graal vm native-image generation." />
+    <MESSAGE value="jar file running with java -cp command." />
+    <option name="LAST_COMMIT_MESSAGE" value="jar file running with java -cp command." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
