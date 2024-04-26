@@ -1,7 +1,6 @@
-package core.parsers;
+package cli.core.parsers;
 
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xwpf.usermodel.*;
 
 
@@ -9,8 +8,9 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
+import static cli.config.GlobalLogger.log;
 
-@Slf4j
+
 public class DocFileParser implements IParser {
     @Override
     @SneakyThrows
@@ -22,7 +22,7 @@ public class DocFileParser implements IParser {
 
 
         } catch (IOException e) {
-            log.error(Arrays.toString(e.getStackTrace()));
+            log.severe(Arrays.toString(e.getStackTrace()));
         }
     }
 
@@ -60,7 +60,7 @@ public class DocFileParser implements IParser {
                 }
             }
         } catch (Exception e) {
-            log.error(Arrays.toString(e.getStackTrace()));
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
             log.info("SKIPPING OPTIONAL CONTENT IN DOC FILE");
         }
     }

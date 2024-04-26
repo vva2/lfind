@@ -1,4 +1,4 @@
-package core.readers;
+package cli.core.readers;
 
 public interface IReader {
 }

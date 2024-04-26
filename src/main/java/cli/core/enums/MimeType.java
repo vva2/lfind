@@ -1,9 +1,9 @@
-package core.enums;
+package cli.core.enums;
 
-import core.parsers.DocFileParser;
-import core.parsers.IParser;
-import core.parsers.PdfFileParser;
-import core.parsers.TextFileParser;
+import cli.core.parsers.PdfFileParser;
+import cli.core.parsers.DocFileParser;
+import cli.core.parsers.IParser;
+import cli.core.parsers.TextFileParser;
 
 
 public enum MimeType {
@@ -25,6 +25,9 @@ public enum MimeType {
                 return DOC;
             case "text":
             case "text/plain":
+            case "text/x-java-source":
+            case "application/xml":
+            case "text/x-web-markdown":
                 return TEXT;
         }
 

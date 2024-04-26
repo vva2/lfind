@@ -1,4 +1,4 @@
-package core.writers;
+package cli.core.writers;
 
 public class FileMetaWriter implements IWriter {
 

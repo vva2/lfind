@@ -1,4 +1,4 @@
-package core.filters;
+package cli.core.filters;
 
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;

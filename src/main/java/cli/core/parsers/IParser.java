@@ -1,6 +1,5 @@
-package core.parsers;
+package cli.core.parsers;
 
-import lombok.SneakyThrows;
 
 import java.io.File;
 import java.util.function.Consumer;

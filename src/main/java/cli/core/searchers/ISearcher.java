@@ -1,4 +1,4 @@
-package core.searchers;
+package cli.core.searchers;
 
 import org.apache.lucene.document.Document;
 import org.apache.lucene.search.IndexSearcher;

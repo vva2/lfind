@@ -4,13 +4,39 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="added code for content searching. includes pdf, word and text file searching. execution working.">
+    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="refactored code and filenames">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cli/config/GlobalLogger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/PipeStreamSearcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logging.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/config/Config.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/Cli.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/Example.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/Example.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cli/LFind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/LFind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/analyzers/FileNameAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/analyzers/CustomWhiteSpaceAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/searchers/FileContentSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/searchers/FileContentSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/searchers/PipeStreamSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/searchers/PipeStreamSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/analyzers/CustomWhiteSpaceAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/analyzers/CustomWhiteSpaceAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/enums/FileType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/enums/FileType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/enums/MimeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/filters/ReversedTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/filters/ReversedTokenFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/parsers/DocFileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/parsers/DocFileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/parsers/IParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/parsers/IParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/parsers/PdfFileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/parsers/PdfFileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/parsers/TextFileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/parsers/TextFileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/readers/IReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/readers/IReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/searchers/FileContentSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/searchers/ISearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/ISearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/searchers/PipeStreamSearcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/writers/FileContentWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/writers/FileContentWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/writers/FileMetaWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/writers/FileMetaWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/writers/IWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/writers/IWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/writers/PipeStreamWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/writers/PipeStreamWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/one two threee.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,27 +87,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FileSearch.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.LFind.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vva&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vva/Desktop/lfind&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FileSearch.executor": "Debug",
+    "Application.LFind.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Maven.lfind [clean,compile].executor": "Run",
+    "Maven.lfind [clean,validate,compile,test...].executor": "Run",
+    "Maven.lfind [compile].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "vva",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/vva/Desktop/lfind",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vva\Desktop\lfind" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -97,7 +133,7 @@
       <recentPaths value="$PROJECT_DIR$" />
     </option>
   </component>
-  <component name="RunManager" selected="Application.LFind">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Cli" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cli.Cli" />
       <module name="lfind" />
@@ -139,11 +175,12 @@
       </method>
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="core.Main" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="lfind" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;slf4j&quot; -c -m text -v" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="core.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,11 +201,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.LFind" />
         <item itemvalue="Application.Example" />
         <item itemvalue="Application.Cli" />
         <item itemvalue="JAR Application.lfind-1.0-SNAPSHOT.jar" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -196,7 +233,8 @@
       <workItem from="1713979872415" duration="20190000" />
       <workItem from="1714001587018" duration="82000" />
       <workItem from="1714001677864" duration="12131000" />
-      <workItem from="1714062674003" duration="6415000" />
+      <workItem from="1714062674003" duration="14292000" />
+      <workItem from="1714089061699" duration="5495000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -250,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714016116439</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="refactored code and filenames">
+      <option name="closed" value="true" />
+      <created>1714079539759</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1714079539759</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -262,33 +308,44 @@
     <MESSAGE value="resume impls" />
     <MESSAGE value="added code for FileMetaSearcher. searching with wildcard queries." />
     <MESSAGE value="added code for content searching. includes pdf, word and text file searching. execution working." />
-    <option name="LAST_COMMIT_MESSAGE" value="added code for content searching. includes pdf, word and text file searching. execution working." />
+    <MESSAGE value="refactored code and filenames" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored code and filenames" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java</url>
           <line>99</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/core/filters/ReversedTokenFilter.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/cli/core/filters/ReversedTokenFilter.java</url>
           <line>19</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/core/searchers/FileMetaSearcher.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java</url>
           <line>178</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/core/enums/MimeType.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java</url>
           <line>36</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Main.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cli/LFind.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="43" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

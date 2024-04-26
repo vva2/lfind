@@ -1,19 +1,16 @@
 package cli;
 
-import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerContext;
+
 import cli.enums.SearchMode;
 import cli.utils.FileUtils;
 import cli.utils.PrettyPrint;
-import core.searchers.FileContentSearcher;
-import core.searchers.FileMetaSearcher;
-import core.searchers.ISearcher;
-import core.searchers.PipeStreamSearcher;
+import cli.config.GlobalLogger;
+import cli.core.searchers.FileContentSearcher;
+import cli.core.searchers.FileMetaSearcher;
+import cli.core.searchers.ISearcher;
+import cli.core.searchers.PipeStreamSearcher;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.LoggerFactory;
 import picocli.CommandLine;
 
 import java.io.File;
@@ -22,12 +19,13 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.Scanner;
 
+import static cli.config.GlobalLogger.log;
+
 
 // Features
 // TODO: add searching within a file
 
 @CommandLine.Command(name = "lfind")
-@Slf4j
 public class LFind {
     @Setter
     boolean isPipedInput;
@@ -84,12 +82,12 @@ public class LFind {
     private void printArgs() {
         log.info("");
         log.info("Running with the following args:");
-        log.info("types: " + Arrays.asList(mimeTypes));
+        log.info("types: " + (mimeTypes == null? null: Arrays.asList(mimeTypes)));
         log.info("path: " + directory.getAbsolutePath());
         log.info("content-mode: " + contentMode);
         log.info("help-mode: " + helpMode);
         log.info("verbose-mode: " + verbose);
-        log.info("query: " + Arrays.asList(queries));
+        log.info("query: " + (queries == null? null: Arrays.asList(queries)));
         log.info("");
     }
 
@@ -121,7 +119,7 @@ public class LFind {
 
     private void checkVerbosity() {
         if(!verbose)
-            turnOffLogging();
+            GlobalLogger.turnOffLogging();
     }
 
     private ISearcher buildSearcher() {
@@ -171,29 +169,11 @@ public class LFind {
 
     private static void turnOffLogging() {
         // Get the logger context
-        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
-
-        // Set the root logger level to OFF
-        Logger rootLogger = loggerContext.getLogger(Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.OFF);
-    }
-
-    public static void main(String[] args) {
-        LFind lfind = new LFind();
-
-        try {
-            CommandLine cli = new CommandLine(lfind);
-            cli.parseArgs(args);
-
-            lfind.run();
-
-        } catch(Exception e) {
-            System.out.println("Failed to run. Exiting.");
-
-            log.error(e.getMessage());
-        }
-
-        log.info("ENDED");
+//        LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+//
+//        // Set the root logger level to OFF
+//        Logger rootLogger = loggerContext.getLogger(Logger.ROOT_LOGGER_NAME);
+//        rootLogger.setLevel(Level.OFF);
     }
 
     private static void startInteractiveMode(LFind fs) {

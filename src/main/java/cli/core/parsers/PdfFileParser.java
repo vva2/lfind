@@ -1,4 +1,4 @@
-package core.parsers;
+package cli.core.parsers;
 
 import lombok.SneakyThrows;
 import org.apache.pdfbox.Loader;

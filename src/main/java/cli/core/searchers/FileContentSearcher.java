@@ -1,32 +1,39 @@
-package core.searchers;
+package cli.core.searchers;
 
-import core.analyzers.CustomWhiteSpaceAnalyzer;
-import core.enums.FileType;
+import cli.core.analyzers.CustomWhiteSpaceAnalyzer;
+import cli.core.enums.MimeType;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.analysis.Analyzer;
-import org.apache.lucene.document.*;
-import org.apache.lucene.index.*;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.StoredField;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.index.Term;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.*;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.tika.Tika;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.Arrays;
-import java.util.function.Predicate;
+import java.util.Set;
+import java.util.TreeSet;
+
+import static cli.config.GlobalLogger.log;
 
 
-@Slf4j
-public class FileMetaSearcher implements ISearcher {
+public class FileContentSearcher implements ISearcher {
     private static class Fields {
-        final static String FILE_NAME = "fileName";
-        final static String FILE_TYPE = "fileType";
-        final static String ABS_PATH = "absPath";
+        public static String FILE_NAME = "fileName";
+        public static String ABS_PATH = "absPath";
+        public static String CONTENT = "content";
+        public static String MIME_TYPE = "mimeType";
     }
 
     Directory index;
@@ -35,14 +42,36 @@ public class FileMetaSearcher implements ISearcher {
     IndexSearcher searcher;
     Analyzer analyzer;
     int nTopDocs;
+    Tika tika;
+    Set<MimeType> allowedMimeTypes;
 
-    public FileMetaSearcher(Path indexDir, File rootDir) {
+    public FileContentSearcher(Path indexDir, File rootDir, String[] mimeTypes) {
         this.rootDir = rootDir;
         this.analyzer = new CustomWhiteSpaceAnalyzer();
         this.nTopDocs = 20;
+        this.tika = new Tika();
 
+
+        buildMimeTypeFilter(mimeTypes);
         buildIndex(indexDir);
         openSearcher();
+    }
+
+    private void buildMimeTypeFilter(String[] mimeTypes) {
+        if(mimeTypes == null || mimeTypes.length == 0)
+            return;
+
+        this.allowedMimeTypes = new TreeSet<>();
+
+        for (String mimeType : mimeTypes) {
+            MimeType type = MimeType.parse(mimeType);
+
+            allowedMimeTypes.add(type);
+        }
+    }
+
+    private boolean isMimeTypeAllowed(MimeType mimeType) {
+        return allowedMimeTypes == null || allowedMimeTypes.contains(mimeType);
     }
 
     @SneakyThrows
@@ -69,26 +98,11 @@ public class FileMetaSearcher implements ISearcher {
     private void addDocsToIndex() throws IOException {
         // recursively read files and folder metadata and add to index
         Files.walk(rootDir.toPath())
-                .filter(isFileOrDirectory())
+                .filter(Files::isRegularFile)
                 .forEach(this::indexFile);
 
         // Commit and close the index writer
         commitAndClose();
-    }
-
-    // Custom predicate to filter both files and directories
-    private static Predicate<Path> isFileOrDirectory() {
-        return path -> {
-            try {
-                BasicFileAttributes attributes = Files.readAttributes(path, BasicFileAttributes.class);
-
-                return attributes.isRegularFile() || attributes.isDirectory();
-            } catch (IOException e) {
-                log.error(Arrays.toString(e.getStackTrace()));
-                // Handle IOException if necessary
-                return false; // Return false in case of an error
-            }
-        };
     }
 
     private void commitAndClose() throws IOException {
@@ -98,19 +112,37 @@ public class FileMetaSearcher implements ISearcher {
 
     private void indexFile(Path filePath) {
         final File file = filePath.toFile();
+        MimeType mimeType;
+
+        try {
+            final String tikaMime = tika.detect(file);
+            mimeType = MimeType.parse(tikaMime);
+
+            log.info("file: " + file.getAbsolutePath() + " | mimeType: " + mimeType + " | " + tikaMime);
+
+            if(!isMimeTypeAllowed(mimeType))
+                return;
+
+        } catch (IOException e) {
+            // skip processing this file
+            return;
+        }
+
         final String absolutePath = file.getAbsolutePath();
-        final FileType fileType = file.isFile()? FileType.FILE: FileType.DIR;
         final String name = file.getName();
+
+        log.info("indexing file: " + absolutePath);
 
         // Create a Lucene document for the file
         Document document = new Document();
-        document.add(new TextField(Fields.FILE_NAME, name, Field.Store.YES)); // Index file name
 
-        // Optionally, index other metadata such as file path
+        mimeType.getParser().readContent(file, text -> {
+            document.add(new TextField(Fields.CONTENT, text + " ", Field.Store.NO));
+        });
+
         document.add(new StoredField(Fields.ABS_PATH, absolutePath));
-
-        // store fileType
-        document.add(new StoredField(Fields.FILE_TYPE, fileType.name()));
+        document.add(new StoredField(Fields.MIME_TYPE, mimeType.name()));
+        document.add(new StoredField(Fields.FILE_NAME, name));
 
         // Add the document to the Lucene index
         try {
@@ -132,7 +164,7 @@ public class FileMetaSearcher implements ISearcher {
             final String searchTerm = tokens.length == 1? "*" + tokens[0] + "*": "*" + tokens[0];
 
             booleanBuilder.add(
-                    new WildcardQuery(new Term(Fields.FILE_NAME, searchTerm)), BooleanClause.Occur.MUST
+                    new WildcardQuery(new Term(Fields.CONTENT, searchTerm)), BooleanClause.Occur.MUST
             );
         }
 
@@ -143,7 +175,7 @@ public class FileMetaSearcher implements ISearcher {
             // Add terms to the PhraseQuery (both original and reversed)
             for (int i = 1; i < tokens.length - 1; i++) {
                 // Exact match for middle tokens
-                phraseBuilder.add(new Term(Fields.FILE_NAME, tokens[i]), i);
+                phraseBuilder.add(new Term(Fields.CONTENT, tokens[i]), i);
             }
 
             // Set the maximum number of other words permitted between words in query phrase
@@ -154,7 +186,7 @@ public class FileMetaSearcher implements ISearcher {
         }
 
         if(tokens.length > 1) {
-            PrefixQuery prefixQuery = new PrefixQuery(new Term(Fields.FILE_NAME, tokens[tokens.length - 1]));
+            PrefixQuery prefixQuery = new PrefixQuery(new Term(Fields.CONTENT, tokens[tokens.length - 1]));
             booleanBuilder.add(prefixQuery, BooleanClause.Occur.MUST);
         }
 
@@ -173,7 +205,7 @@ public class FileMetaSearcher implements ISearcher {
     @Override
     public String[] getLuceneQueryMatches(String query) {
         // Create a QueryParser for the specified field and analyzer
-        QueryParser parser = new QueryParser(Fields.FILE_NAME, this.analyzer);
+        QueryParser parser = new QueryParser(Fields.CONTENT, this.analyzer);
 
         // Parse the user query string to obtain a Lucene Query object
         Query luceneQuery = parser.parse(query);
@@ -190,6 +222,6 @@ public class FileMetaSearcher implements ISearcher {
 
     @Override
     public String formatMatch(Document document) {
-        return String.format("%-5s| %-30s| %s", document.get(Fields.FILE_TYPE), document.get(Fields.FILE_NAME), makePathClickable(document.get(Fields.ABS_PATH)));
+        return String.format("%-3s | %-40s | %s", document.get(Fields.MIME_TYPE), document.get(Fields.FILE_NAME), makePathClickable(document.get(Fields.ABS_PATH)));
     }
 }
