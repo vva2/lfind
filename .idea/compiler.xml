@@ -7,10 +7,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <option name="project" value="org.example/lfind" />
+        <option name="project" value="org.lfind/lfind" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli-codegen/4.7.5/picocli-codegen-4.7.5.jar" />
-          <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli/4.7.5/picocli-4.7.5.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
           <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli-codegen/4.7.5/picocli-codegen-4.7.5.jar" />
           <entry name="$MAVEN_REPOSITORY$/info/picocli/picocli/4.7.5/picocli-4.7.5.jar" />
@@ -22,7 +20,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="lfind" options="-Aproject=org.example/lfind" />
+      <module name="lfind" options="-Aproject=org.lfind/lfind" />
     </option>
   </component>
 </project>
