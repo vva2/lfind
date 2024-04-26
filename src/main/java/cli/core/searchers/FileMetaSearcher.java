@@ -23,6 +23,8 @@ import static cli.config.GlobalLogger.log;
 
 
 public class FileMetaSearcher implements ISearcher {
+    private static final int FILE_COMMIT_THRESHOLD = 50;
+
     private static class Fields {
         final static String FILE_NAME = "fileName";
         final static String FILE_TYPE = "fileType";
@@ -35,6 +37,7 @@ public class FileMetaSearcher implements ISearcher {
     IndexSearcher searcher;
     Analyzer analyzer;
     int nTopDocs;
+    int nFilesProcessed = 0;
 
     public FileMetaSearcher() {}
 
@@ -131,6 +134,13 @@ public class FileMetaSearcher implements ISearcher {
         // Add the document to the Lucene index
         try {
             writer.addDocument(document);
+            nFilesProcessed++;
+
+            if(nFilesProcessed%FILE_COMMIT_THRESHOLD == 0) {
+                writer.commit();
+
+                log.info("commiting writer. files processed: " + nFilesProcessed);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

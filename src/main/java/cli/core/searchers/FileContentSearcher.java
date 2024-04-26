@@ -30,6 +30,8 @@ import static cli.config.GlobalLogger.log;
 
 
 public class FileContentSearcher implements ISearcher {
+    private static final int FILE_COMMIT_THRESHOLD = 50;
+
     private static class Fields {
         public static String FILE_NAME = "fileName";
         public static String ABS_PATH = "absPath";
@@ -45,6 +47,7 @@ public class FileContentSearcher implements ISearcher {
     int nTopDocs;
     Tika tika;
     Set<MimeType> allowedMimeTypes;
+    int nFilesProcessed = 0;
 
     public FileContentSearcher(Path indexDir, File rootDir, String[] mimeTypes) {
         this.rootDir = rootDir;
@@ -155,6 +158,15 @@ public class FileContentSearcher implements ISearcher {
         try {
             log.info("writing document...");
             writer.addDocument(document);
+
+            nFilesProcessed++;
+
+            if(nFilesProcessed%FILE_COMMIT_THRESHOLD == 0) {
+                writer.commit();
+
+                log.info("commiting writer. files processed: " + nFilesProcessed);
+            }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
