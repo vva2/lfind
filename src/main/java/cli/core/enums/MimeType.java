@@ -15,6 +15,10 @@ public enum MimeType {
     IParser parser;
 
     public static MimeType parse(final String type) {
+        if(type.startsWith("text")) {
+            return TEXT;
+        }
+
         switch(type) {
             case "pdf":
             case "application/pdf":
@@ -23,12 +27,6 @@ public enum MimeType {
             case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             case "doc":
                 return DOC;
-            case "text":
-            case "text/plain":
-            case "text/x-java-source":
-            case "application/xml":
-            case "text/x-web-markdown":
-                return TEXT;
         }
 
         return OTHER;

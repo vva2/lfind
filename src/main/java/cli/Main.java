@@ -1,7 +1,6 @@
-import cli.LFind;
+package cli;
+
 import picocli.CommandLine;
-import cli.core.searchers.FileContentSearcher;
-import cli.core.searchers.FileMetaSearcher;
 
 import static cli.config.GlobalLogger.log;
 
