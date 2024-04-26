@@ -1,9 +1,8 @@
-package core.searchers;
+package cli.core.searchers;
 
 
-import core.analyzers.CustomWhiteSpaceAnalyzer;
+import cli.core.analyzers.CustomWhiteSpaceAnalyzer;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -23,9 +22,13 @@ import java.io.InputStreamReader;
 import java.nio.file.Path;
 import java.util.Arrays;
 
+import static cli.config.GlobalLogger.log;
 
-@Slf4j
+
 public class PipeStreamSearcher implements ISearcher {
+    // commit every 500 lines
+    private static final int LINE_COMMIT_THRESHOLD = 500;
+
     private static class Fields {
         public static final String LINE = "LINE";
     }
@@ -35,6 +38,7 @@ public class PipeStreamSearcher implements ISearcher {
     IndexSearcher searcher;
     Analyzer analyzer;
     int nTopDocs;
+    int nLinesProcessed = 0;
 
     public PipeStreamSearcher(Path indexDir) {
         this.analyzer = new CustomWhiteSpaceAnalyzer();
@@ -75,7 +79,7 @@ public class PipeStreamSearcher implements ISearcher {
             log.info("lines written successfully");
 
         } catch (IOException e) {
-            Arrays.stream(e.getStackTrace()).forEach(st -> log.error(st.toString()));
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
             throw new RuntimeException(e);
         }
 
@@ -96,6 +100,14 @@ public class PipeStreamSearcher implements ISearcher {
         // Add the document to the Lucene index
         try {
             writer.addDocument(document);
+
+            nLinesProcessed++;
+
+            if(nLinesProcessed% LINE_COMMIT_THRESHOLD == 0) {
+                writer.commit();
+
+                log.info("commiting writer. lines processed: " + nLinesProcessed);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
