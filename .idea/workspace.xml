@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="merged code for PipeStreamSearcher">
+    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="PipeStreamSearcher needs refactor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/PipeStreamSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/PipeStreamSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lfind-windows-exec-bin/lfind.bat" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/lfind-windows-exec-bin/lfind.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "vva2"
+  }
+}]]></component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
       <filtered-out-file-type name="LOCAL_BRANCH" />
@@ -44,6 +51,19 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="main" />
+      </list>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:vva2/lfind.git",
+    "accountId": "995676b6-c9d4-4c9f-95d0-72551597e40a"
+  }
+}]]></component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -97,7 +117,7 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "jvm.logging",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -168,7 +188,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cli.Main" />
       <module name="lfind" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;go.go&quot; -v -p &quot;C:\Users\vva\Desktop&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="-c" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
@@ -233,7 +253,7 @@
       <workItem from="1714114054359" duration="65000" />
       <workItem from="1714114127597" duration="905000" />
       <workItem from="1714115134990" duration="6125000" />
-      <workItem from="1714156050334" duration="13638000" />
+      <workItem from="1714156050334" duration="22647000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -391,7 +411,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714170541366</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="PipeStreamSearcher needs refactor">
+      <option name="closed" value="true" />
+      <created>1714170850905</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1714170850905</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,7 +453,8 @@
     <MESSAGE value="added functionality for piped input." />
     <MESSAGE value="PipeStreamSearcher needs refactor." />
     <MESSAGE value="merged code for PipeStreamSearcher" />
-    <option name="LAST_COMMIT_MESSAGE" value="merged code for PipeStreamSearcher" />
+    <MESSAGE value="PipeStreamSearcher needs refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="PipeStreamSearcher needs refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -449,9 +478,9 @@
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cli/LFind.java</url>
-          <line>82</line>
-          <option name="timeStamp" value="43" />
+          <url>file://$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java</url>
+          <line>204</line>
+          <option name="timeStamp" value="44" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
