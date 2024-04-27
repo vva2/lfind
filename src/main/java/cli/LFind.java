@@ -25,8 +25,8 @@ import static cli.config.GlobalLogger.log;
 // Features
 // TODO: add searching within a file
 
-@CommandLine.Command(name = "lfind")
-public class LFind {
+@CommandLine.Command(name = "lfind", mixinStandardHelpOptions = true)
+public class LFind implements Runnable {
     @Setter
     boolean isPipedInput;
 
@@ -48,8 +48,8 @@ public class LFind {
     @CommandLine.Option(names = {"-m", "--mimetypes"}, description = "Mime-Types to include (comma-separated, e.g. pdf,doc,text)", split = ",")
     String[] mimeTypes;
 
-    @CommandLine.Option(names = {"-h", "--help"}, usageHelp = true, description = "Help")
-    boolean helpMode;
+//    @CommandLine.Option(names = {"-h", "--help"}, usageHelp = true, description = "Help")
+//    boolean helpMode;
 
     @Getter
     @CommandLine.Option(names = {"-v", "--verbose"}, description = "Verbose mode")
@@ -85,7 +85,7 @@ public class LFind {
         log.info("types: " + (mimeTypes == null? null: Arrays.asList(mimeTypes)));
         log.info("path: " + directory.getAbsolutePath());
         log.info("content-mode: " + contentMode);
-        log.info("help-mode: " + helpMode);
+//        log.info("help-mode: " + helpMode);
         log.info("verbose-mode: " + verbose);
         log.info("query: " + (queries == null? null: Arrays.asList(queries)));
         log.info("");
@@ -109,6 +109,7 @@ public class LFind {
         return queries == null;
     }
 
+    @Override
     public void run() {
         argsValidityCheck();
         checkVerbosity();

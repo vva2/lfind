@@ -10,10 +10,7 @@ public class Main {
 
         try {
             CommandLine cli = new CommandLine(lfind);
-            cli.parseArgs(args);
-
-            lfind.run();
-
+            cli.execute(args);
         } catch(Exception e) {
             System.out.println("Failed to run. Exiting.");
 
