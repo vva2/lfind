@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="updated bat and added log4j core">
+    <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="added exception handling for">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cli/LFind.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/LFind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/PipeStreamSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/PipeStreamSearcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,48 +81,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FileSearch.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.LFind.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [--version].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,validate,compile,test...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,validate,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:add-reachability-metadata].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:build].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile-no-fork].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:add-reachability-metadata].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:generateResourceConfig].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.nativeimage:native-image-maven-plugin:21.2.0:native-image].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vva&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vva/Desktop/lfind/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FileSearch.executor": "Debug",
+    "Application.LFind.executor": "Run",
+    "Application.Main.executor": "Debug",
+    "Maven.lfind [--version].executor": "Run",
+    "Maven.lfind [clean,compile].executor": "Run",
+    "Maven.lfind [clean,package].executor": "Run",
+    "Maven.lfind [clean,validate,compile,test...].executor": "Run",
+    "Maven.lfind [clean,validate,compile].executor": "Run",
+    "Maven.lfind [clean].executor": "Run",
+    "Maven.lfind [compile].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:add-reachability-metadata].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:build].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile-no-fork].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:add-reachability-metadata].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:generateResourceConfig].executor": "Run",
+    "Maven.lfind [org.graalvm.nativeimage:native-image-maven-plugin:21.2.0:native-image].executor": "Run",
+    "Maven.lfind [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "vva",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/vva/Desktop/lfind/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\vva\Desktop\lfind\src\main\resources" />
@@ -188,7 +190,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cli.Main" />
       <module name="lfind" />
-      <option name="PROGRAM_PARAMETERS" value="-c" />
+      <option name="PROGRAM_PARAMETERS" value="-ep C:\Users\vva\Desktop\Test &quot;A AND D*&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
@@ -254,7 +256,9 @@
       <workItem from="1714114127597" duration="905000" />
       <workItem from="1714115134990" duration="6125000" />
       <workItem from="1714156050334" duration="23272000" />
-      <workItem from="1714245930371" duration="1153000" />
+      <workItem from="1714245930371" duration="1394000" />
+      <workItem from="1714248731543" duration="641000" />
+      <workItem from="1714509752414" duration="6123000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -428,7 +432,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714191319020</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="added fix for help mode.">
+      <option name="closed" value="true" />
+      <created>1714248016239</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1714248016240</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -464,7 +476,8 @@
     <MESSAGE value="merged code for PipeStreamSearcher" />
     <MESSAGE value="PipeStreamSearcher needs refactor" />
     <MESSAGE value="updated bat and added log4j core" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated bat and added log4j core" />
+    <MESSAGE value="added fix for help mode." />
+    <option name="LAST_COMMIT_MESSAGE" value="added fix for help mode." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -489,8 +502,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java</url>
-          <line>204</line>
-          <option name="timeStamp" value="44" />
+          <line>209</line>
+          <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
