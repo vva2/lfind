@@ -95,6 +95,9 @@ public class LFind implements Runnable {
         // checks if the combination of args are valid
         // can be replaced by using groups
         // throws exception if the combination is invalid
+
+        if(isInteractive() && getSearchMode().equals(SearchMode.PIPED_INPUT))
+            throw new CommandLine.ParameterException(spec.commandLine(), String.format("Piped input search in interactive mode is not supported"));
     }
 
     private boolean hasPipedInput() {
@@ -141,6 +144,8 @@ public class LFind implements Runnable {
         // determine type of input
         SearchMode searchMode = getSearchMode();
         ISearcher searcher;
+
+        log.info("Search Mode: " + searchMode);
 
         switch (searchMode) {
             case FILE_METADATA:
@@ -197,28 +202,33 @@ public class LFind implements Runnable {
     }
 
     private void runInteractiveMode(ISearcher searcher) {
-        Scanner scanner = new Scanner(System.in);
+        try {
+            Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Interactive mode. Enter '\\q' to quit.");
+            System.out.println("Interactive mode. Enter '\\q' to quit.");
 
-        while (true) {
-            System.out.print("query> ");
-            String input = scanner.nextLine().trim();
+            while (true) {
+                System.out.print("query> ");
+                String input = scanner.nextLine().trim();
 
-            // Check for exit condition
-            if ("\\q".equalsIgnoreCase(input)) {
-                log.info("Exiting interactive mode");
-                break;
-            } else if("\\h".equalsIgnoreCase(input)) {
-                log.info("Interactive: help mode");
-                System.out.println("Enter a query to search | \\q for quit | \\h for help");
-                continue;
+                // Check for exit condition
+                if ("\\q".equalsIgnoreCase(input)) {
+                    log.info("Exiting interactive mode");
+                    break;
+                } else if("\\h".equalsIgnoreCase(input)) {
+                    log.info("Interactive: help mode");
+                    System.out.println("Enter a query to search | \\q for quit | \\h for help");
+                    continue;
+                }
+
+                // Parse and execute the command
+                String query = input.trim();
+
+                processQuery(searcher, query);
             }
-
-            // Parse and execute the command
-            String query = input.trim();
-
-            processQuery(searcher, query);
+        } catch (Exception e) {
+            System.out.println("Error Occured. Exiting...");
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
         }
     }
 }

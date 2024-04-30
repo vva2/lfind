@@ -201,6 +201,9 @@ public class FileMetaSearcher implements ISearcher {
         // Create a QueryParser for the specified field and analyzer
         QueryParser parser = new QueryParser(Fields.FILE_NAME, this.analyzer);
 
+        // lowercase as wildcard parsing is case-sensitive
+        query = query.toLowerCase();
+
         // Parse the user query string to obtain a Lucene Query object
         Query luceneQuery = parser.parse(query);
 
