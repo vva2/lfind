@@ -31,9 +31,9 @@ Google Slides: https://docs.google.com/presentation/d/1jsJ0dmrn3akUqSMIImU1bvoxl
 
 1. **Download the Package**
 
-    - For **Windows** users, navigate to `src/main/resources/windows-pkg` and run using `lfind.bat`.
+    - For **Windows** users, navigate to `package/windows-pkg` and run using `lfind.bat`.
 
-    - For **Mac** users, navigate to `src/main/resources/mac-pkg` and run using `lfind.sh`.
+    - For **Mac** users, navigate to `package/mac-pkg` and run using `lfind.sh`.
 
 2. **Run the Application**
     - **Mac**:
@@ -48,7 +48,7 @@ Google Slides: https://docs.google.com/presentation/d/1jsJ0dmrn3akUqSMIImU1bvoxl
 
 ### Adding to Environment Path (Optional)
 
-To access `lfind` from anywhere in the terminal, you can add the appropriate folder (`src/main/resources/windows-pkg` for Windows or `src/main/resources/mac-pkg` for Mac) to your system's environment path.
+To access `lfind` from anywhere in the terminal, you can add the appropriate folder (`package/windows-pkg` for Windows or `package/mac-pkg` for Mac) to your system's environment path.
 
 - **Mac**:
   ```bash
