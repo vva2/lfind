@@ -3,6 +3,8 @@
 
 `lfind` is a command line tool built entirely in java that leverages [Apache Lucene](https://lucene.apache.org/) for efficient searching across files and directories in the file system.
 
+Youtube link: <iframe width="1280" height="720" src="https://www.youtube.com/embed/7soDBlhvogY" title="Spring-2024-CSCE-670-Project-LFind" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
 ## Features
 
 - **Interactive and Direct Command Modes**: lfind supports both interactive mode for iterative search queries and direct command mode for quick one-time searches.
