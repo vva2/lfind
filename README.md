@@ -241,10 +241,10 @@ We extend our sincere gratitude to the following individuals and resources that 
 
 ## Contributors
 
-- vva2
-- mkr-peta
-- bhavan-dondapati
-- spchimmani
+- [@vva2](https://github.com/vva2)
+- [@mkr-peta](https://github.com/mkr-peta)
+- [@bhavan-dondapati](https://github.com/bhavan-dondapati)
+- [@spchimmani](https://github.com/spchimmani)
 
 ## License
 
