@@ -27,6 +27,8 @@ public enum MimeType {
             case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
             case "doc":
                 return DOC;
+            case "application/x-bat":
+                return TEXT;
         }
 
         return OTHER;

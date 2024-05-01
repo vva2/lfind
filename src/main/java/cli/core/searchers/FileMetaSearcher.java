@@ -136,6 +136,7 @@ public class FileMetaSearcher implements ISearcher {
             writer.addDocument(document);
             nFilesProcessed++;
 
+
             if(nFilesProcessed%FILE_COMMIT_THRESHOLD == 0) {
                 writer.commit();
 

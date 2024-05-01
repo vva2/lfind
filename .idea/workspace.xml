@@ -5,11 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/img_1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileContentSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cli/core/searchers/PipeStreamSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cli/core/searchers/PipeStreamSearcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +85,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.FileSearch.executor&quot;: &quot;Debug&quot;,
     &quot;Application.LFind.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Maven.lfind [--version].executor&quot;: &quot;Run&quot;,
     &quot;Maven.lfind [clean,compile].executor&quot;: &quot;Run&quot;,
     &quot;Maven.lfind [clean,package].executor&quot;: &quot;Run&quot;,
@@ -110,7 +110,7 @@
     &quot;git-widget-placeholder&quot;: &quot;vva&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vva/Desktop/lfind/src/main/resources&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vva/Desktop/lfind/src/main/resources/windows-pkg&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -125,8 +125,14 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vva\Desktop\lfind\src\main\resources\windows-pkg" />
       <recent name="C:\Users\vva\Desktop\lfind\src\main\resources" />
       <recent name="C:\Users\vva\Desktop\lfind" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\vva\Desktop\lfind\src\main\resources\windows-pkg\jar" />
+      <recent name="C:\Users\vva\Desktop\lfind\src\main\resources\windows-pkg" />
+      <recent name="C:\Users\vva\Desktop\lfind\src\main\resources\windows-pkg\some" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -190,7 +196,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="cli.Main" />
       <module name="lfind" />
-      <option name="PROGRAM_PARAMETERS" value="-ep C:\Users\vva\Desktop\Test &quot;A AND D*&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="-ecp C:\Users\vva\Desktop\Test &quot;A AND D*&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
@@ -259,7 +265,8 @@
       <workItem from="1714245930371" duration="1394000" />
       <workItem from="1714248731543" duration="641000" />
       <workItem from="1714509752414" duration="7068000" />
-      <workItem from="1714529068794" duration="3251000" />
+      <workItem from="1714529068794" duration="3606000" />
+      <workItem from="1714537965098" duration="9236000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -449,7 +456,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714518650141</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="added error handling for files that have no read-access">
+      <option name="closed" value="true" />
+      <created>1714537631400</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1714537631400</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -488,7 +503,8 @@
     <MESSAGE value="added fix for help mode." />
     <MESSAGE value="added exception handling for" />
     <MESSAGE value="added exception handling for interactive mode. lucene's strange query parsing fix." />
-    <option name="LAST_COMMIT_MESSAGE" value="added exception handling for interactive mode. lucene's strange query parsing fix." />
+    <MESSAGE value="added error handling for files that have no read-access" />
+    <option name="LAST_COMMIT_MESSAGE" value="added error handling for files that have no read-access" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -500,7 +516,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java</url>
-          <line>34</line>
+          <line>36</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
@@ -513,7 +529,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java</url>
-          <line>211</line>
+          <line>212</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
