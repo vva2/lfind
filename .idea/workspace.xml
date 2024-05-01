@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/package/mac-pkg/lfind.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,50 +78,51 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.FileSearch.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.LFind.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [--version].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,validate,compile,test...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean,validate,compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:add-reachability-metadata].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:build].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile-no-fork].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:add-reachability-metadata].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:generateResourceConfig].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [org.graalvm.nativeimage:native-image-maven-plugin:21.2.0:native-image].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.lfind [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;vva&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vva/Desktop/lfind/src/main/resources/windows-pkg&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.FileSearch.executor": "Debug",
+    "Application.LFind.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Maven.lfind [--version].executor": "Run",
+    "Maven.lfind [clean,compile].executor": "Run",
+    "Maven.lfind [clean,package].executor": "Run",
+    "Maven.lfind [clean,validate,compile,test...].executor": "Run",
+    "Maven.lfind [clean,validate,compile].executor": "Run",
+    "Maven.lfind [clean].executor": "Run",
+    "Maven.lfind [compile].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-compiler-plugin:3.13.0:compile].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-install-plugin:3.1.1:install].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-jar-plugin:3.4.1:jar].executor": "Run",
+    "Maven.lfind [org.apache.maven.plugins:maven-resources-plugin:3.3.1:resources].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:add-reachability-metadata].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:build].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile-no-fork].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.10.1:compile].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:add-reachability-metadata].executor": "Run",
+    "Maven.lfind [org.graalvm.buildtools:native-maven-plugin:0.9.26:generateResourceConfig].executor": "Run",
+    "Maven.lfind [org.graalvm.nativeimage:native-image-maven-plugin:21.2.0:native-image].executor": "Run",
+    "Maven.lfind [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "vva",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/vva/Desktop/lfind/package/windows-pkg/jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\vva\Desktop\lfind\package\windows-pkg\jar" />
       <recent name="C:\Users\vva\Desktop\lfind\src\main\resources\windows-pkg" />
       <recent name="C:\Users\vva\Desktop\lfind\src\main\resources" />
       <recent name="C:\Users\vva\Desktop\lfind" />
@@ -266,7 +267,7 @@
       <workItem from="1714529068794" duration="3606000" />
       <workItem from="1714537965098" duration="11376000" />
       <workItem from="1714590130585" duration="81000" />
-      <workItem from="1714590221624" duration="370000" />
+      <workItem from="1714590221624" duration="759000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -520,7 +521,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714590451707</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added windows package + updated path in README.md">
+      <option name="closed" value="true" />
+      <created>1714590729926</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1714590729926</updated>
+    </task>
+    <task id="LOCAL-00034" summary="added jars to windows-pkg">
+      <option name="closed" value="true" />
+      <created>1714590816979</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1714590816979</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -538,8 +555,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added FileSearch" />
-    <MESSAGE value="resume impls" />
     <MESSAGE value="added code for FileMetaSearcher. searching with wildcard queries." />
     <MESSAGE value="added code for content searching. includes pdf, word and text file searching. execution working." />
     <MESSAGE value="refactored code and filenames" />
@@ -563,7 +578,9 @@
     <MESSAGE value="final README.md" />
     <MESSAGE value="added youtube link" />
     <MESSAGE value="added youtube link and google slides link" />
-    <option name="LAST_COMMIT_MESSAGE" value="added youtube link and google slides link" />
+    <MESSAGE value="added windows package + updated path in README.md" />
+    <MESSAGE value="added jars to windows-pkg" />
+    <option name="LAST_COMMIT_MESSAGE" value="added jars to windows-pkg" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
