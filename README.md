@@ -28,12 +28,11 @@
 
 1. **Download the Package**
 
-    - For **Windows** users, navigate to `src/main/resources/windows-pkg` and run `lfind.bat`.
+    - For **Windows** users, navigate to `src/main/resources/windows-pkg` and run using `lfind.bat`.
 
-    - For **Mac** users, navigate to `src/main/resources/mac-pkg` and run `lfind.sh`.
+    - For **Mac** users, navigate to `src/main/resources/mac-pkg` and run using `lfind.sh`.
 
 2. **Run the Application**
-
     - **Mac**:
       ```bash
       ./lfind.sh [options] <queries>
@@ -86,16 +85,95 @@ lfind [options]
 
 ### Examples
 
+**Note**: You can run the following examples in both interactive mode (without providing a query) or direct command mode (providing a query).
+
+#### Piped Input Search
+
+You can combine `lfind` with other commands using pipes to search within the piped input.
+
+Search for a term (substring) in the piped input (e.g., output of `ls` command):
+
+```bash
+ls | lfind "query"
+```
+
+Search for an expression in the piped input (e.g., contents of a file):
+
+```bash
+cat "test.txt" | lfind -e "one AND two"
+```
+
 #### File name search
 
-Search for a term (substring) in the file names:
+Search within a specific directory path:
+
+```bash
+lfind -p "/path/to/directory" "query"
+```
+
+Search for a term (substring) in file names within the current directory:
 
 ```bash
 lfind "query"
 ```
 
-Search for a term 
+Search for an expression in file names:
 
+```bash
+lfind -e "one AND two"
+```
+
+```bash
+lfind -e "one OR two"
+```
+
+```bash
+lfind -e "one -two"
+```
+
+```bash
+lfind -e "one AND two*"
+```
+
+Enable verbose mode to display additional information:
+
+```bash
+lfind -v "query"
+```
+
+#### File content search
+
+Search for a term (substring) within file content:
+
+```bash
+lfind -c "query"
+```
+
+Search for an expression within file content:
+
+```bash
+lfind -ce "one AND two"
+```
+
+or 
+
+```bash
+lfind -c -e "one AND two"
+```
+
+Apply file type filters (e.g., PDF and text files) to your content searches:
+
+```bash
+lfind -c -m pdf,text "query"
+```
+
+or
+
+```bash
+lfind -c -m pdf -m text "query"
+```
+
+Feel free to experiment with different options and queries to leverage the full capabilities of lfind for searching file names and content efficiently.
 
 ## Contributing Guidelines
 
@@ -137,6 +215,11 @@ While `lfind` currently provides powerful file system searching capabilities, th
 - **Internationalization (i18n)**: Add support for different languages and localization.
 
 Contributions and suggestions for these or other enhancements are welcome! Please feel free to open an issue or submit a pull request to discuss and collaborate on the future development of `lfind`.
+
+
+## Acknoledgements
+
+* Used ChatGPT for README and to solve some issues in the code.
 
 ## Contributors
 

@@ -263,7 +263,7 @@
       <workItem from="1714248731543" duration="641000" />
       <workItem from="1714509752414" duration="7068000" />
       <workItem from="1714529068794" duration="3606000" />
-      <workItem from="1714537965098" duration="9329000" />
+      <workItem from="1714537965098" duration="10776000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -469,7 +469,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714548195175</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="added README.md, added dat file plain text matcher.">
+      <option name="closed" value="true" />
+      <created>1714548242043</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1714548242043</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
