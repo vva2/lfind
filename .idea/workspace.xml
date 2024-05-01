@@ -268,7 +268,7 @@
       <workItem from="1714529068794" duration="3606000" />
       <workItem from="1714537965098" duration="11376000" />
       <workItem from="1714590130585" duration="81000" />
-      <workItem from="1714590221624" duration="1352000" />
+      <workItem from="1714590221624" duration="1978000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -562,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714591205745</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="updated README.md">
+      <option name="closed" value="true" />
+      <created>1714591594283</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1714591594283</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

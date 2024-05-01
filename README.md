@@ -6,7 +6,8 @@
 ## Links
 
 [Youtube link](https://youtu.be/7soDBlhvogY)  
-[Google Slides](https://docs.google.com/presentation/d/1jsJ0dmrn3akUqSMIImU1bvoxlBTbZ-o4UTDCaLNB8B8/edit?usp=sharing)
+[Google Slides](https://docs.google.com/presentation/d/1jsJ0dmrn3akUqSMIImU1bvoxlBTbZ-o4UTDCaLNB8B8/edit?usp=sharing)  
+[Github Link](https://github.com/vva2/lfind)
 
 ## Features
 
