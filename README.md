@@ -85,7 +85,7 @@ lfind [options]
 
 ### Examples
 
-**Note**: You can run the following examples in both interactive mode (without providing a query) or direct command mode (providing a query).
+**Note**: You can run the following examples (except piped input search) in both interactive mode (without providing a query) or direct command mode (providing a query).
 
 #### Piped Input Search
 
