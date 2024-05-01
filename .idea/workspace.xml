@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +268,7 @@
       <workItem from="1714529068794" duration="3606000" />
       <workItem from="1714537965098" duration="11376000" />
       <workItem from="1714590130585" duration="81000" />
-      <workItem from="1714590221624" duration="876000" />
+      <workItem from="1714590221624" duration="968000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -545,7 +546,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714591072674</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="updated README.md">
+      <option name="closed" value="true" />
+      <created>1714591132779</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1714591132779</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -563,7 +572,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added code for content searching. includes pdf, word and text file searching. execution working." />
     <MESSAGE value="refactored code and filenames" />
     <MESSAGE value="refactored all classes. facing issues with graal vm native-image generation." />
     <MESSAGE value="jar file running with java -cp command." />
@@ -588,7 +596,8 @@
     <MESSAGE value="added windows package + updated path in README.md" />
     <MESSAGE value="added jars to windows-pkg" />
     <MESSAGE value="added mac-pkg" />
-    <option name="LAST_COMMIT_MESSAGE" value="added mac-pkg" />
+    <MESSAGE value="updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
