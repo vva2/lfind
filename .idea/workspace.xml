@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1e22d6e-bfee-4a70-8d67-c231e236f090" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -264,6 +263,8 @@
       <workItem from="1714509752414" duration="7068000" />
       <workItem from="1714529068794" duration="3606000" />
       <workItem from="1714537965098" duration="11376000" />
+      <workItem from="1714590130585" duration="81000" />
+      <workItem from="1714590221624" duration="209000" />
     </task>
     <task id="LOCAL-00001" summary="added pom">
       <created>1711843816922</created>
@@ -501,7 +502,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714550154299</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="added youtube link">
+      <option name="closed" value="true" />
+      <created>1714590320794</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1714590320794</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -543,7 +552,8 @@
     <MESSAGE value="added error handling for files that have no read-access" />
     <MESSAGE value="added README.md, added dat file plain text matcher." />
     <MESSAGE value="final README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="final README.md" />
+    <MESSAGE value="added youtube link" />
+    <option name="LAST_COMMIT_MESSAGE" value="added youtube link" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -555,7 +565,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cli/core/enums/MimeType.java</url>
-          <line>36</line>
+          <line>38</line>
           <properties>
             <option name="lambda-ordinal" value="-1" />
           </properties>
@@ -568,7 +578,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/cli/core/searchers/FileMetaSearcher.java</url>
-          <line>212</line>
+          <line>215</line>
           <option name="timeStamp" value="45" />
         </line-breakpoint>
       </breakpoints>
