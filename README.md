@@ -230,7 +230,7 @@ We extend our sincere gratitude to the following individuals and resources that 
 
 - **Open Source Libraries and Tools**:
     - [Apache Lucene](https://lucene.apache.org/): Powerful search library used as the core engine for `lfind`.
-    - [picocli](https://picocli.info/): Command line parsing and validation library that enhances the user experience of `lfind`.
+    - [Picocli](https://picocli.info/): Command line parsing and validation library that enhances the user experience of `lfind`.
     - [Apache PDFBox](https://pdfbox.apache.org/): Library for working with PDF documents, providing essential features for PDF file handling in `lfind`.
     - [Apache Tika](https://tika.apache.org/): Toolkit for detecting and extracting metadata and text content from various file formats, enhancing content extraction capabilities in `lfind`.
     - [Apache POI](https://poi.apache.org/): Library for reading and writing Microsoft Office file formats (such as Word documents), extending file type support in `lfind`.
