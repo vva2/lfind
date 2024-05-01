@@ -109,7 +109,9 @@ public class PipeStreamSearcher implements ISearcher {
                 log.info("commiting writer. lines processed: " + nLinesProcessed);
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            log.severe("ERROR occured while indexing line: " + line);
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
+            return;
         }
     }
 

@@ -127,35 +127,23 @@ public class FileContentSearcher implements ISearcher {
             if(!isMimeTypeAllowed(mimeType))
                 return;
 
-        } catch (IOException e) {
-            // skip processing this file
-            return;
-        }
+            final String absolutePath = file.getAbsolutePath();
+            final String name = file.getName();
 
-        final String absolutePath = file.getAbsolutePath();
-        final String name = file.getName();
+            log.info("indexing file: " + absolutePath);
 
-        log.info("indexing file: " + absolutePath);
+            // Create a Lucene document for the file
+            Document document = new Document();
 
-        // Create a Lucene document for the file
-        Document document = new Document();
-
-        try {
             mimeType.getParser().readContent(file, text -> {
                 document.add(new TextField(Fields.CONTENT, text + " ", Field.Store.NO));
             });
-        } catch (Exception e) {
-            log.severe("ERROR occured while indexing file: " + absolutePath);
-            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
-            return;
-        }
 
-        document.add(new StoredField(Fields.ABS_PATH, absolutePath));
-        document.add(new StoredField(Fields.MIME_TYPE, mimeType.name()));
-        document.add(new StoredField(Fields.FILE_NAME, name));
+            document.add(new StoredField(Fields.ABS_PATH, absolutePath));
+            document.add(new StoredField(Fields.MIME_TYPE, mimeType.name()));
+            document.add(new StoredField(Fields.FILE_NAME, name));
 
-        // Add the document to the Lucene index
-        try {
+            // Add the document to the Lucene index
             log.info("writing document...");
             writer.addDocument(document);
 
@@ -166,9 +154,10 @@ public class FileContentSearcher implements ISearcher {
 
                 log.info("commiting writer. files processed: " + nFilesProcessed);
             }
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            log.severe("ERROR occured while indexing file: " + filePath.toAbsolutePath());
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
+            return;
         }
     }
 

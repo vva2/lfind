@@ -116,33 +116,36 @@ public class FileMetaSearcher implements ISearcher {
     }
 
     private void indexFile(Path filePath) {
-        final File file = filePath.toFile();
-        final String absolutePath = file.getAbsolutePath();
-        final FileType fileType = file.isFile()? FileType.FILE: FileType.DIR;
-        final String name = file.getName();
-
-        // Create a Lucene document for the file
-        Document document = new Document();
-        document.add(new TextField(Fields.FILE_NAME, name, Field.Store.YES)); // Index file name
-
-        // Optionally, index other metadata such as file path
-        document.add(new StoredField(Fields.ABS_PATH, absolutePath));
-
-        // store fileType
-        document.add(new StoredField(Fields.FILE_TYPE, fileType.name()));
-
         // Add the document to the Lucene index
         try {
+            final File file = filePath.toFile();
+            final String absolutePath = file.getAbsolutePath();
+            final FileType fileType = file.isFile()? FileType.FILE: FileType.DIR;
+            final String name = file.getName();
+
+            // Create a Lucene document for the file
+            Document document = new Document();
+            document.add(new TextField(Fields.FILE_NAME, name, Field.Store.YES)); // Index file name
+
+            // Optionally, index other metadata such as file path
+            document.add(new StoredField(Fields.ABS_PATH, absolutePath));
+
+            // store fileType
+            document.add(new StoredField(Fields.FILE_TYPE, fileType.name()));
+
             writer.addDocument(document);
             nFilesProcessed++;
+
 
             if(nFilesProcessed%FILE_COMMIT_THRESHOLD == 0) {
                 writer.commit();
 
                 log.info("commiting writer. files processed: " + nFilesProcessed);
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            log.severe("ERROR in file: " + filePath.toAbsolutePath() + ". Skipping file");
+            Arrays.stream(e.getStackTrace()).forEach(st -> log.severe(st.toString()));
+            return;
         }
     }
 

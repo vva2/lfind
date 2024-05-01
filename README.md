@@ -1,18 +1,234 @@
 # lfind
 
-- Link to features: https://www.notion.so/CSCE-670-ISR-Project-Lfind-d4a883e31ec6465aad858e2a11929c5c?pvs=4
-- command to run the built jar: `java -cp ".\lfind-1.0-SNAPSHOT.jar;C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar" cli.LFind "word"`
-- check the possibility of RAMDirectory
-- popularity based indexing: popular items will be indexed with more granularity
-- case sensitive and case in-sensitive searching
-- `native-image -cp C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar --static -jar .\lfind-1.0-SNAPSHOT.jar`
-- `native-image -cp C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar -jar .\lfind-1.0-SNAPSHOT.jar`
-- `native-image --no-server -cp lfind-1.0-SNAPSHOT.jar --initialize-at-build-time=org.apache.logging.slf4j.SLF4JLogger --initialize-at-run-time=org.slf4j.LoggerFactory -H:Name=israpp cli.Main`
 
-- `java -cp "C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-core\9.10.0\lucene-core-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-analyzers-common\8.11.3\lucene-analyzers-common-8.11.3.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-queries\9.10.0\lucene-queries-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\tika\tika-core\2.9.2\tika-core-2.9.2.jar;lfind-1.0-SNAPSHOT.jar" cli.Main`
-- 
-- `native-image -cp "C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-core\9.10.0\lucene-core-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-analyzers-common\8.11.3\lucene-analyzers-common-8.11.3.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-queries\9.10.0\lucene-queries-9.10.0.jar;lfind-1.0-SNAPSHOT.jar" cli.Main`
-- `native-image -cp "C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-core\9.10.0\lucene-core-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-analyzers-common\8.11.3\lucene-analyzers-common-8.11.3.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-queries\9.10.0\lucene-queries-9.10.0.jar" -jar lfind-1.0-SNAPSHOT.jar`
-- `java -agentlib:native-image-agent=config-output-dir=C:\Users\vva\Desktop\lfind\target\classes\META-INF\native-image\picocli-generated\org.lfind\lfind -cp "C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-core\9.10.0\lucene-core-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-analyzers-common\8.11.3\lucene-analyzers-common-8.11.3.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-queries\9.10.0\lucene-queries-9.10.0.jar;lfind-1.0-SNAPSHOT.jar" cli.Main`
+`lfind` is a command line tool built entirely in java that leverages Apache Lucene for efficient searching across files and directories in the file system.
 
-- `C:\Users\vva\.jdks\corretto-11.0.23\bin\java.exe "-javaagent:C:\Users\vva\AppData\Local\Programs\IntelliJ IDEA Ultimate\lib\idea_rt.jar=55896:C:\Users\vva\AppData\Local\Programs\IntelliJ IDEA Ultimate\bin" -classpath "C:\Users\vva\.m2\repository\org\apache\lucene\lucene-core\9.10.0\lucene-core-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-analyzers-common\8.11.3\lucene-analyzers-common-8.11.3.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-queryparser\9.10.0\lucene-queryparser-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-queries\9.10.0\lucene-queries-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\lucene\lucene-sandbox\9.10.0\lucene-sandbox-9.10.0.jar;C:\Users\vva\.m2\repository\org\apache\pdfbox\pdfbox\3.0.2\pdfbox-3.0.2.jar;C:\Users\vva\.m2\repository\org\apache\pdfbox\pdfbox-io\3.0.2\pdfbox-io-3.0.2.jar;C:\Users\vva\.m2\repository\org\apache\pdfbox\fontbox\3.0.2\fontbox-3.0.2.jar;C:\Users\vva\.m2\repository\commons-logging\commons-logging\1.3.0\commons-logging-1.3.0.jar;C:\Users\vva\.m2\repository\org\apache\tika\tika-core\2.9.2\tika-core-2.9.2.jar;C:\Users\vva\.m2\repository\org\slf4j\slf4j-api\2.0.10\slf4j-api-2.0.10.jar;C:\Users\vva\.m2\repository\commons-io\commons-io\2.15.1\commons-io-2.15.1.jar;C:\Users\vva\.m2\repository\org\apache\poi\poi-ooxml\5.2.5\poi-ooxml-5.2.5.jar;C:\Users\vva\.m2\repository\org\apache\poi\poi\5.2.5\poi-5.2.5.jar;C:\Users\vva\.m2\repository\commons-codec\commons-codec\1.16.0\commons-codec-1.16.0.jar;C:\Users\vva\.m2\repository\org\apache\commons\commons-math3\3.6.1\commons-math3-3.6.1.jar;C:\Users\vva\.m2\repository\com\zaxxer\SparseBitSet\1.3\SparseBitSet-1.3.jar;C:\Users\vva\.m2\repository\org\apache\poi\poi-ooxml-lite\5.2.5\poi-ooxml-lite-5.2.5.jar;C:\Users\vva\.m2\repository\org\apache\xmlbeans\xmlbeans\5.2.0\xmlbeans-5.2.0.jar;C:\Users\vva\.m2\repository\org\apache\commons\commons-compress\1.25.0\commons-compress-1.25.0.jar;C:\Users\vva\.m2\repository\com\github\virtuald\curvesapi\1.08\curvesapi-1.08.jar;C:\Users\vva\.m2\repository\org\apache\logging\log4j\log4j-api\2.21.1\log4j-api-2.21.1.jar;C:\Users\vva\.m2\repository\org\apache\commons\commons-collections4\4.4\commons-collections4-4.4.jar;C:\Users\vva\.m2\repository\org\projectlombok\lombok\1.18.32\lombok-1.18.32.jar;C:\Users\vva\.m2\repository\info\picocli\picocli\4.7.5\picocli-4.7.5.jar;C:\Users\vva\.m2\repository\info\picocli\picocli-shell-jline3\4.7.5\picocli-shell-jline3-4.7.5.jar;C:\Users\vva\.m2\repository\org\jline\jline\3.23.0\jline-3.23.0.jar;C:\Users\vva\.m2\repository\org\slf4j\slf4j-nop\2.0.13\slf4j-nop-2.0.13.jar;C:\Users\vva\Desktop\lfind\target\lfind-1.0.0.jar" cli.Main`
+## Features
+
+- **Interactive and Direct Command Modes**: lfind supports both interactive mode for iterative search queries and direct command mode for quick one-time searches.
+- **Search File Names and Content**: Easily search for file names and within file content across various file types including PDFs, Word documents, and plain text files.
+- **Advanced Query Support**: Supports a wide range of query types including boolean, phrase, partial, wildcard, and prefix queries—leveraging the full querying capabilities of Lucene.
+- **Piped Input Support**: Integrates seamlessly into bash scripting with support for piped inputs, allowing lfind to be combined with other commands in powerful workflows.
+- **Cross-Platform Compatibility**: Works on any machine with Java installed. Tested on macOS, Windows, and expected to run smoothly on Linux environments.
+- **Rich Command Line Interface**: Powered by picocli, lfind provides a user-friendly and feature-rich command line experience.
+- **Automatic Index Cleanup**: lfind automatically cleans up index files upon safe termination of the application, ensuring efficient resource management.
+
+## Process Flow
+
+![img_1.png](img_1.png)
+
+## Installation
+
+### Requirements
+
+- java 11 or higher (tested using [Amazon Corretto 11](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html))
+- Tested in both windows 11 and Mac M3 Pro
+
+### How to run
+
+1. **Download the Package**
+
+    - For **Windows** users, navigate to `src/main/resources/windows-pkg` and run using `lfind.bat`.
+
+    - For **Mac** users, navigate to `src/main/resources/mac-pkg` and run using `lfind.sh`.
+
+2. **Run the Application**
+    - **Mac**:
+      ```bash
+      ./lfind.sh [options] <queries>
+      ```
+
+    - **Windows**:
+      ```bash
+      .\lfind.bat [options] <queries>
+      ```
+
+### Adding to Environment Path (Optional)
+
+To access `lfind` from anywhere in the terminal, you can add the appropriate folder (`src/main/resources/windows-pkg` for Windows or `src/main/resources/mac-pkg` for Mac) to your system's environment path.
+
+- **Mac**:
+  ```bash
+  export PATH=$PATH:/path/to/src/main/resources/mac-pkg
+  ```
+- **Windows**:
+  ```bash
+  setx PATH "%PATH%;C:\path\to\src\main\resources\windows-pkg"
+  ```
+
+## Usage
+
+Ensure that you have followed the steps in the `Adding to Environment Path` section of the README. If not, run the following commands from the appropriate path.
+
+
+
+### Running Direct Commands
+
+```bash
+lfind [options] <query>
+```
+
+### Running in Interactive Mode
+
+```bash
+lfind [options]
+```
+
+### Options
+
+- `-c, --content`: Enable searching within file content (default: false).
+- `-e, --expression`: Treat queries as Lucene query expressions (default: false). When enabled, all queries are interpreted as Lucene queries.
+- `-h, --help`: Display help message and exit.
+- `-m, --mimetypes=<mimeTypes>`: Specify MIME types to include in content search (comma-separated, e.g., pdf,doc,text). Default is no filter; used only in content search mode.
+- `-p, --path=<directory>`: Specify the starting path for the search (default: current working directory).
+- `-v, --verbose`: Enable verbose mode to print useful debugging information.
+
+### Examples
+
+**Note**: You can run the following examples in both interactive mode (without providing a query) or direct command mode (providing a query).
+
+#### Piped Input Search
+
+You can combine `lfind` with other commands using pipes to search within the piped input.
+
+Search for a term (substring) in the piped input (e.g., output of `ls` command):
+
+```bash
+ls | lfind "query"
+```
+
+Search for an expression in the piped input (e.g., contents of a file):
+
+```bash
+cat "test.txt" | lfind -e "one AND two"
+```
+
+#### File name search
+
+Search within a specific directory path:
+
+```bash
+lfind -p "/path/to/directory" "query"
+```
+
+Search for a term (substring) in file names within the current directory:
+
+```bash
+lfind "query"
+```
+
+Search for an expression in file names:
+
+```bash
+lfind -e "one AND two"
+```
+
+```bash
+lfind -e "one OR two"
+```
+
+```bash
+lfind -e "one -two"
+```
+
+```bash
+lfind -e "one AND two*"
+```
+
+Enable verbose mode to display additional information:
+
+```bash
+lfind -v "query"
+```
+
+#### File content search
+
+Search for a term (substring) within file content:
+
+```bash
+lfind -c "query"
+```
+
+Search for an expression within file content:
+
+```bash
+lfind -ce "one AND two"
+```
+
+or 
+
+```bash
+lfind -c -e "one AND two"
+```
+
+Apply file type filters (e.g., PDF and text files) to your content searches:
+
+```bash
+lfind -c -m pdf,text "query"
+```
+
+or
+
+```bash
+lfind -c -m pdf -m text "query"
+```
+
+Feel free to experiment with different options and queries to leverage the full capabilities of lfind for searching file names and content efficiently.
+
+## Contributing Guidelines
+
+1. Bug Reports and Feature Requests
+    - If you encounter a bug or have an idea for a new feature, please open an issue on GitHub to report it.
+    - Provide detailed steps to reproduce the bug, including any relevant error messages or screenshots.
+    - Clearly describe the expected behavior or propose your feature idea.
+2. Code Contributions
+   - Fork the repository and create a new branch for your changes.
+   - Ensure your code follows the project's coding style and conventions.
+   - Write clear, concise commit messages that explain the purpose of each change.
+   - Open a pull request (PR) with a descriptive title and detailed description of your changes.
+3. Documentation
+   - Improve existing documentation or write new documentation for features or APIs.
+   - Update the README file with any necessary information for users and contributors.
+
+## Future Scope
+
+While `lfind` currently provides powerful file system searching capabilities, there are several potential areas for future improvement and expansion:
+
+- **Performance Optimizations**: Investigate methods to further optimize indexing and searching for larger file systems, enhancing speed and efficiency.
+
+- **Additional File Types**: Expand file type support to include a broader range of formats, enabling comprehensive searching across various file types.
+
+- **Enhanced Result Details**: Enhance result output by providing additional details such as matched lines within files or specific substrings matched during content-based searches.
+
+- **File Monitoring and Precomputed Indexing**: Implement precomputed indexing and background file monitoring to maintain index consistency and accelerate search processes.
+
+- **Custom Ranking and Scoring**: Customize the ranking and scoring functions to tailor search results based on specific file system retrieval tasks, such as boosting file matches over folder matches or prioritizing exact matches.
+
+- **Query Optimization**: Optimize query processing internally to improve search performance, particularly for token-based searches using wildcard queries.
+
+- **Improved Packaging**: Explore solutions to resolve compatibility issues with GraalVM, potentially downgrading the Lucene version or adopting other strategies for efficient packaging.
+
+- **User Interface (UI)**: Develop a graphical user interface (GUI) version for users who prefer a visual interaction.
+
+- **Advanced Search Filters**: Implement advanced search filters based on file attributes, metadata, or content properties to refine search results based on specific criteria.
+
+- **Internationalization (i18n)**: Add support for different languages and localization.
+
+Contributions and suggestions for these or other enhancements are welcome! Please feel free to open an issue or submit a pull request to discuss and collaborate on the future development of `lfind`.
+
+
+## Acknoledgements
+
+* Used ChatGPT for README and to solve some issues in the code.
+
+## Contributors
+
+- vva2
+- mkr-peta
+- bhavan-dondapati
+- spchimmani
+
+## License
+
+- Licensed with Apache-2.0 license
+
