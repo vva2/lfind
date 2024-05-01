@@ -217,9 +217,22 @@ While `lfind` currently provides powerful file system searching capabilities, th
 Contributions and suggestions for these or other enhancements are welcome! Please feel free to open an issue or submit a pull request to discuss and collaborate on the future development of `lfind`.
 
 
-## Acknoledgements
+## Acknowledgements
 
-* Used ChatGPT for README and to solve some issues in the code.
+We extend our sincere gratitude to the following individuals and resources that have contributed to the development and improvement of `lfind`:
+
+- **Open Source Libraries and Tools**:
+    - [Apache Lucene](https://lucene.apache.org/): Powerful search library used as the core engine for `lfind`.
+    - [picocli](https://picocli.info/): Command line parsing and validation library that enhances the user experience of `lfind`.
+    - [Apache PDFBox](https://pdfbox.apache.org/): Library for working with PDF documents, providing essential features for PDF file handling in `lfind`.
+    - [Apache Tika](https://tika.apache.org/): Toolkit for detecting and extracting metadata and text content from various file formats, enhancing content extraction capabilities in `lfind`.
+    - [Apache POI](https://poi.apache.org/): Library for reading and writing Microsoft Office file formats (such as Word documents), extending file type support in `lfind`.
+
+
+- **Development Tools**:
+    - [ChatGPT](https://www.openai.com/gpt): Leveraged for generating this README and providing assistance in resolving coding issues.
+
+
 
 ## Contributors
 
