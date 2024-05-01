@@ -1,7 +1,7 @@
 # lfind
 
 
-`lfind` is a command line tool built entirely in java that leverages Apache Lucene for efficient searching across files and directories in the file system.
+`lfind` is a command line tool built entirely in java that leverages [Apache Lucene](https://lucene.apache.org/) for efficient searching across files and directories in the file system.
 
 ## Features
 
@@ -10,7 +10,7 @@
 - **Advanced Query Support**: Supports a wide range of query types including boolean, phrase, partial, wildcard, and prefix queries—leveraging the full querying capabilities of Lucene.
 - **Piped Input Support**: Integrates seamlessly into bash scripting with support for piped inputs, allowing lfind to be combined with other commands in powerful workflows.
 - **Cross-Platform Compatibility**: Works on any machine with Java installed. Tested on macOS, Windows, and expected to run smoothly on Linux environments.
-- **Rich Command Line Interface**: Powered by picocli, lfind provides a user-friendly and feature-rich command line experience.
+- **Rich Command Line Interface**: Powered by [picocli](https://picocli.info/), lfind provides a user-friendly and feature-rich command line experience.
 - **Automatic Index Cleanup**: lfind automatically cleans up index files upon safe termination of the application, ensuring efficient resource management.
 
 ## Process Flow
