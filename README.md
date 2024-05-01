@@ -1,6 +1,5 @@
 # lfind
 
----
 
 `lfind` is a command line tool built entirely in java that leverages Apache Lucene for efficient searching across files and directories in the file system.
 
