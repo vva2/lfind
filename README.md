@@ -52,11 +52,11 @@ To access `lfind` from anywhere in the terminal, you can add the appropriate fol
 
 - **Mac**:
   ```bash
-  export PATH=$PATH:/path/to/src/main/resources/mac-pkg
+  export PATH=$PATH:/path/to/package/mac-pkg
   ```
 - **Windows**:
   ```bash
-  setx PATH "%PATH%;C:\path\to\src\main\resources\windows-pkg"
+  setx PATH "%PATH%;C:\path\to\package/windows-pkg"
   ```
 
 ## Usage
